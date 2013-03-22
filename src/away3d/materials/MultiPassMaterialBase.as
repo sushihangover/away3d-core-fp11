@@ -368,6 +368,7 @@
 		arcane override function updateMaterial(context : Context3D) : void
 		{
 			var passesInvalid : Boolean;
+			var i : int; // ASX#1018
 
 			if (_screenPassesInvalid) {
 				updateScreenPasses();
@@ -379,7 +380,7 @@
 
 				addChildPassesFor(_casterLightPass);
 				if (_nonCasterLightPasses)
-					for (var i : int = 0; i < _nonCasterLightPasses.length; ++i)
+					for (i = 0; i < _nonCasterLightPasses.length; ++i)
 						addChildPassesFor(_nonCasterLightPasses[i]);
 				addChildPassesFor(_effectsPass);
 
@@ -483,7 +484,7 @@
 				}
 			}
 
-			if (_casterLightPass || _nonCasterLightPasses) {
+			if (_casterLightPass!=null || _nonCasterLightPasses!=null) { // ASX#1032
 				if (_effectsPass) {
 					_effectsPass.depthCompareMode = Context3DCompareMode.EQUAL;
 					_effectsPass.setBlendMode(BlendMode.NORMAL, true);

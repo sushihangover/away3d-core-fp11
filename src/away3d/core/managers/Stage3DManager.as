@@ -131,4 +131,5 @@ package away3d.core.managers
 	}
 }
 
-class Stage3DManagerSingletonEnforcer {}
+// ASX#1009
+public class Stage3DManagerSingletonEnforcer {}

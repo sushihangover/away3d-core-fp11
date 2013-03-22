@@ -76,7 +76,7 @@ package away3d.core.pick
 		 * 
 		 * @param entity The entity to which this collision object belongs.
 		 */
-		function PickingCollisionVO(entity:Entity)
+		public function PickingCollisionVO(entity:Entity)
 		{
 			this.entity = entity;
 		}

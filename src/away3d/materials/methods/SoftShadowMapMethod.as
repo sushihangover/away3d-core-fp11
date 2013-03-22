@@ -136,7 +136,8 @@ package away3d.materials.methods
 			var temp : ShaderRegisterElement = regCache.getFreeFragmentVectorTemp();
 
 			var numRegs : int = _numSamples >> 1;
-			for (var i : int = 0; i < numRegs; ++i) {
+			var i : int;
+			for (i = 0; i < numRegs; ++i) {
 				var reg : ShaderRegisterElement = regCache.getFreeFragmentConstant();
 				offsets.push(reg+".xy");
 				offsets.push(reg+".zw");

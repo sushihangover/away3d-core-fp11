@@ -66,6 +66,7 @@ package away3d.materials.passes
 					break;
 				default:
 					format = "";
+					break;
 			}
 			var mip : String = ",mipnone";
 			if(_cubeTexture.hasMipMaps)

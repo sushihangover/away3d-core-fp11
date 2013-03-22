@@ -37,7 +37,7 @@ package away3d.animators.states
 			_skeletonPoseDirty = true;
 		}
 		
-		function SkeletonBinaryLERPState(animator:IAnimator, skeletonAnimationNode:SkeletonBinaryLERPNode)
+		public function SkeletonBinaryLERPState(animator:IAnimator, skeletonAnimationNode:SkeletonBinaryLERPNode)
 		{
 			super(animator, skeletonAnimationNode);
 			

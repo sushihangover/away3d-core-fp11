@@ -97,7 +97,7 @@ package away3d.tools.helpers
 					if (compact)
 					{
 						tempLen = compact.numVertices;
-						compact.numTriangles;
+						var temp0:int = compact.numTriangles;
 						sourceVertices = compact.vertexData;
 						
 						if (transforms) {

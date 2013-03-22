@@ -40,7 +40,7 @@ package away3d.materials.passes {
 		protected var _animationSet : IAnimationSet;
 		
 		arcane var _program3Ds : Vector.<Program3D> = new Vector.<Program3D>(8);
-		arcane var _program3Dids : Vector.<int> = Vector.<int>([-1, -1, -1, -1, -1, -1, -1, -1]);
+		arcane var _program3Dids : Vector.<int> = new <int>[-1, -1, -1, -1, -1, -1, -1, -1];
 		private var _context3Ds:Vector.<Context3D> = new Vector.<Context3D>(8);
 
 		// agal props. these NEED to be set by subclasses!
@@ -63,13 +63,13 @@ package away3d.materials.passes {
 		private var _bothSides : Boolean;
 
 		protected var _lightPicker : LightPickerBase;
-		protected var _animatableAttributes : Vector.<String> = Vector.<String>(["va0"]);
-		protected var _animationTargetRegisters : Vector.<String> = Vector.<String>(["vt0"]);
+		protected var _animatableAttributes : Vector.<String> = new <String>["va0"];
+		protected var _animationTargetRegisters : Vector.<String> = new <String>["vt0"];
 		protected var _shadedTarget:String = "ft0";
 		
 		// keep track of previously rendered usage for faster cleanup of old vertex buffer streams and textures
-		private static var _previousUsedStreams : Vector.<int> = Vector.<int>([0, 0, 0, 0, 0, 0, 0, 0]);
-		private static var _previousUsedTexs : Vector.<int> = Vector.<int>([0, 0, 0, 0, 0, 0, 0, 0]);
+		private static var _previousUsedStreams : Vector.<int> = new <int>[0, 0, 0, 0, 0, 0, 0, 0];
+		private static var _previousUsedTexs : Vector.<int> = new <int>[0, 0, 0, 0, 0, 0, 0, 0];
 		protected var _defaultCulling : String = Context3DTriangleFace.BACK;
 
 		private var _renderToTexture : Boolean;

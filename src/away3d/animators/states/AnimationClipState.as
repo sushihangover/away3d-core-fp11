@@ -56,7 +56,7 @@ package away3d.animators.states
 			return _nextFrame;
 		}
 		
-		function AnimationClipState(animator:IAnimator, animationClipNode:AnimationClipNodeBase)
+		public function AnimationClipState(animator:IAnimator, animationClipNode:AnimationClipNodeBase)
 		{
 			super(animator, animationClipNode);
 			

@@ -35,13 +35,12 @@ package away3d.debug
             trace("ERROR: "+message);
             throw new Error(message);
         }
-    }
-}
 
-/**
- * @private
- */
-function dotrace(message:Object):void
-{
-    trace(message);
+
+		// ASX#1028
+		private static function dotrace(message:Object):void
+		{
+			trace(message);
+		}
+    }
 }

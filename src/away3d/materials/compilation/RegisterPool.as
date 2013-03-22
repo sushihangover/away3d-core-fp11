@@ -1,5 +1,7 @@
 package away3d.materials.compilation
 {
+	import flash.utils.Dictionary;
+
 	/**
 	 * RegisterPool is used by the shader compilation process to keep track of which registers of a certain type are
 	 * currently used. Either entire registers can be requested and locked, or single components (x, y, z, w) of a
@@ -9,8 +11,8 @@ package away3d.materials.compilation
 	{
 		private var _regName : String;
 		private var _vectorRegisters : Vector.<ShaderRegisterElement>;
-		private var _registerComponents : Array;
-		private var _usedSingleCount : Array;
+		private var _registerComponents : Dictionary; //ASX#1025
+		private var _usedSingleCount : Dictionary;
 		private var _usedVectorCount : Vector.<uint>;
 		private var _regCount : int;
 
@@ -126,9 +128,9 @@ package away3d.materials.compilation
 			var comp : String;
 
 			_vectorRegisters = new Vector.<ShaderRegisterElement>(regCount, true);
-			_registerComponents = [];
+			_registerComponents = new Dictionary();
 			_usedVectorCount = new Vector.<uint>(regCount, true);
-			_usedSingleCount = [];
+			_usedSingleCount = new Dictionary();
 
 			for (var i : int = 0; i < regCount; ++i) {
 				_vectorRegisters[i] = new ShaderRegisterElement(regName, i);

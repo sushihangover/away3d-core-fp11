@@ -56,12 +56,12 @@ package away3d.paths
 
 		public function getPointOnSegment(phase:Number, target:Vector3D = null):Vector3D
 		{
-			const td:Number = 1 - phase;
-			const t_2:Number = phase*phase;
-			const a:Number = td*td*td;
-			const b:Number = 3*phase*td*td;
-			const c:Number = 3*t_2*td;
-			const t_3:Number = t_2*phase;
+			var td:Number = 1 - phase;
+			var t_2:Number = phase*phase;
+			var a:Number = td*td*td;
+			var b:Number = 3*phase*td*td;
+			var c:Number = 3*t_2*td;
+			var t_3:Number = t_2*phase;
 
 			target ||= new Vector3D();
 			target.x = a*start.x + b*control1.x + c*control2.x + t_3*end.x;

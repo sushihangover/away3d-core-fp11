@@ -26,7 +26,7 @@ package away3d.materials.methods {
 		public function TerrainDiffuseMethod(splatTextures : Array, blendingTexture : Texture2DBase, tileData : Array)
 		{
 			super();
-			_splats = Vector.<Texture2DBase>(splatTextures);
+			_splats = new Vector.<Texture2DBase>(splatTextures);
 			_tileData = tileData;
 			_blendingTexture = blendingTexture;
 			_numSplattingLayers = _splats.length;
@@ -89,7 +89,7 @@ package away3d.materials.methods {
 			var splatTexReg : ShaderRegisterElement;
 
 			vo.fragmentConstantsIndex = scaleRegister.index*4;
-			var comps : Vector.<String> = Vector.<String>([ ".x",".y",".z",".w" ]);
+			var comps : Vector.<String> = new <String>[ ".x",".y",".z",".w" ];
 
 			for (var i : int = 0; i < _numSplattingLayers; ++i) {
 				var scaleRegName : String = i < 3? scaleRegister + comps[i+1] : scaleRegister2 + comps[i - 3];

@@ -96,7 +96,7 @@ package away3d.lights.shadowmaps
 			_depthMapSize = value;
 
 			if (_explicitDepthMap) {
-				throw Error("Cannot set depth map size for the current renderer.");
+				throw new Error("Cannot set depth map size for the current renderer.");
 			}
 			else if (_depthMap) {
 				_depthMap.dispose();

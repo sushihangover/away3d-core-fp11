@@ -41,7 +41,7 @@ package away3d.textures
 			_autoPlay = autoPlay;
 
 			// Sets up the bitmap material
-			super(new BitmapData(_materialWidth, _materialHeight, true, 0));
+			super(new BitmapData(materialWidth, materialHeight, true, 0));
 
 			// if autoplay start video
 			if (autoPlay)

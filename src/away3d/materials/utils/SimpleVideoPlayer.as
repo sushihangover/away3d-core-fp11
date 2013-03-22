@@ -38,11 +38,13 @@ package away3d.materials.utils
 			
 			// client object that'll redirect various calls from the video stream
 			_nsClient = {};
-			_nsClient["onCuePoint"] = metaDataHandler;
-			_nsClient["onMetaData"] = metaDataHandler;
-			_nsClient["onBWDone"] = onBWDone;
-			_nsClient["close"] = streamClose;
-			
+			_nsClient["onCuePoint"] = Function(metaDataHandler);
+			_nsClient["onMetaData"] = Function(metaDataHandler);
+			_nsClient["onBWDone"] = Function(onBWDone);
+			_nsClient["close"] = Function(streamClose);
+
+			throw new System.NotImplementedException("ASX# runtime not implemented");
+#if false
 			// NetConnection
 			_nc = new NetConnection();
 			_nc.client = _nsClient;
@@ -67,6 +69,7 @@ package away3d.materials.utils
 			// container
 			_container = new Sprite();
 			_container.addChild( _video );
+#endif
 		}
 		
 		
@@ -76,7 +79,9 @@ package away3d.materials.utils
 		
 		public function play():void
 		{
-			
+			throw new System.NotImplementedException("ASX# runtime not implemented");
+			#if false
+
 			if(!_src)
 			{
 				trace("Video source not set.");
@@ -95,13 +100,17 @@ package away3d.materials.utils
 				_playing = true;
 				_paused = false;
 			}
+#endif
 		}
 		
 		public function pause():void
 		{
 			if(!_paused)
 			{
+				throw new System.NotImplementedException("ASX# runtime not implemented");
+				#if false
 				_ns.pause();
+				#endif
 				_paused = true;
 			}
 		}
@@ -109,13 +118,19 @@ package away3d.materials.utils
 		public function seek(val:Number):void
 		{
 			pause();
+			throw new System.NotImplementedException("ASX# runtime not implemented");
+			#if false
 			_ns.seek( val );
 			_ns.resume();
+			#endif
 		}
 		
 		public function stop():void
-		{
+		{	
+			throw new System.NotImplementedException("ASX# runtime not implemented");
+			#if false
 			_ns.close();
+			#endif
 			_playing = false;
 			_paused = false;
 		}
@@ -123,7 +138,9 @@ package away3d.materials.utils
 		
 		public function dispose():void
 		{
-			
+			throw new System.NotImplementedException("ASX# runtime not implemented");
+			#if false
+
 			_ns.close();
 			
 			_video.attachNetStream( null );
@@ -154,6 +171,7 @@ package away3d.materials.utils
 
 			_playing = false;
 			_paused = false;
+#endif
 			
 		}
 		
@@ -198,7 +216,7 @@ package away3d.materials.utils
 		
 		private function netStatusHandler(e:NetStatusEvent):void
 		{
-			switch (e.info["code"]) {
+			switch (String(e.info["code"])) {
 				case "NetStream.Play.Stop": 
 					//this.dispatchEvent( new VideoEvent(VideoEvent.STOP,_netStream, file) ); 
 					if(loop)

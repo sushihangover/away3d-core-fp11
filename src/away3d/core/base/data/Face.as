@@ -31,8 +31,9 @@
 		 */
 		function Face(vertices:Vector.<Number> = null, uvs:Vector.<Number> = null)
 		{
-			_vertices = vertices || Vector.<Number>([0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]);
-			_uvs = uvs || Vector.<Number>([0.0,0.0,0.0,0.0,0.0,0.0]);
+			// ASX#1015
+			_vertices = (vertices!=null) ? vertices : new <Number>[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0];
+			_uvs = (uvs!=null) ? uvs : new <Number>[0.0,0.0,0.0,0.0,0.0,0.0];
 		}
 		
 		//uvs
@@ -210,7 +211,7 @@
 		 */
 		public function set v0Index(ind:uint):void
   		{
-			_v0Index;
+			_v0Index = ind; // ASX#1024 BUG?
 		}
 		/**
 		* @return Returns the index value of the v0 stored in the Face value object
@@ -224,7 +225,7 @@
 		*/
 		public function get v0():Vector.<Number>
   		{
-            return Vector.<Number>([_vertices[0],_vertices[1], _vertices[2]]);
+            return new <Number>[_vertices[0],_vertices[1], _vertices[2]];
   		}
 		/**
 		* @return Returns the x value of the v0 stored in the Face value object
@@ -255,7 +256,7 @@
 		 */
 		public function set v1Index(ind:uint):void
   		{
-			_v1Index;
+			_v1Index = ind; // ASX#1024 bug?
 		}
 		/**
 		* @return Returns the index value of the v1 stored in the Face value object
@@ -269,7 +270,7 @@
 		*/
 		public function get v1():Vector.<Number>
   		{
-            return Vector.<Number>([_vertices[3],_vertices[4], _vertices[5]]);
+            return new <Number>[_vertices[3],_vertices[4], _vertices[5]];
   		}
 		/**
 		* @return Returns the x value of the v1 stored in the Face value object
@@ -300,7 +301,7 @@
 		 */
 		public function set v2Index(ind:uint):void
   		{
-			_v2Index;
+			_v2Index = ind; //ASX#1024
 		}
 		/**
 		* @return return the index value of the v2 stored in the Face value object
@@ -314,7 +315,7 @@
 		*/
 		public function get v2():Vector.<Number>
   		{
-            return Vector.<Number>([_vertices[6],_vertices[7], _vertices[8]]);
+            return new <Number>[_vertices[6],_vertices[7], _vertices[8]];
   		}
 		/**
 		* @return Returns the x value of the v2 stored in the Face value object
@@ -342,13 +343,13 @@
 		 */
 		public function clone():Face
   		{
-			var nVertices:Vector.<Number> = Vector.<Number>([	_vertices[0],_vertices[1],_vertices[2],
+			var nVertices:Vector.<Number> = new <Number>[	_vertices[0],_vertices[1],_vertices[2],
 																_vertices[3],_vertices[4],_vertices[5],
-																_vertices[6],_vertices[7],_vertices[8]]);
+																_vertices[6],_vertices[7],_vertices[8]];
 			
-			var nUvs:Vector.<Number> = Vector.<Number>([_uvs[0],_uvs[1],
+			var nUvs:Vector.<Number> = new <Number>[_uvs[0],_uvs[1],
 														_uvs[2],_uvs[3],
-														_uvs[4],_uvs[5]]);
+														_uvs[4],_uvs[5]];
 
 			return new Face(nVertices, nUvs);
 		}

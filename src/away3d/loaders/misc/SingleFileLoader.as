@@ -138,7 +138,7 @@ package away3d.loaders.misc
 		private var _data : *;
 		
 		// Image parser only parser that is added by default, to save file size.
-		private static var _parsers : Vector.<Class> = Vector.<Class>([ ImageParser ]);
+		private static var _parsers : Vector.<Class> = new <Class>[ ImageParser ];
 		
 		
 		/**
@@ -289,12 +289,13 @@ package away3d.loaders.misc
 		private function getParserFromSuffix() : ParserBase
 		{
 			var len : uint = _parsers.length;
-			
+
+			throw new System.NotImplementedException("ASX#1029");
 			// go in reverse order to allow application override of default parser added in Away3D proper
-			for (var i : int = len-1; i >= 0; i--)
-				if (_parsers[i].supportsType(_fileExtension)) return new _parsers[i]();
-			
-			return null;
+//			for (var i : int = len-1; i >= 0; i--)
+//				if (_parsers[i].supportsType(_fileExtension)) return new _parsers[i]();
+//			
+//			return null;
 		}
 		
 		/**
@@ -306,13 +307,15 @@ package away3d.loaders.misc
 		private function getParserFromData(data : *) : ParserBase
 		{
 			var len : uint = _parsers.length;
+
+			throw new System.NotImplementedException("ASX#1029");
 			
 			// go in reverse order to allow application override of default parser added in Away3D proper
-			for (var i : int = len-1; i >= 0; i--)
-				if (_parsers[i].supportsData(data))
-					return new _parsers[i]();
-			
-			return null;
+//			for (var i : int = len-1; i >= 0; i--)
+//				if (_parsers[i].supportsData(data))
+//					return new _parsers[i]();
+//			
+//			return null;
 		}
 		
 		/**

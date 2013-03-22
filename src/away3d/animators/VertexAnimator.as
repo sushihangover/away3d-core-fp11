@@ -22,7 +22,7 @@ package away3d.animators
 	{
 		private var _vertexAnimationSet:VertexAnimationSet;
 		private var _poses : Vector.<Geometry> = new Vector.<Geometry>();
-		private var _weights : Vector.<Number> = Vector.<Number>([1, 0, 0, 0]);
+		private var _weights : Vector.<Number> = new <Number>[1, 0, 0, 0]; // ASX#1015
 		private var _numPoses : uint;
 		private var _blendMode:String;
 		private var _activeVertexState:IVertexAnimationState;
@@ -72,7 +72,8 @@ package away3d.animators
 			if (updatePosition) {
 				//update straight away to reset position deltas
 				_activeState.update(_absoluteTime);
-				_activeState.positionDelta;
+				throw new System.NotImplementedException("ASX#1013"); // Mono.CSharp.InternalErrorException: FullNamedExpression `away3d.animators.AnimatorBase._activeState.positionDelta' found in resolved tree
+				// _activeState.positionDelta;
 			}
 			
 			_activeVertexState = _activeState as IVertexAnimationState;

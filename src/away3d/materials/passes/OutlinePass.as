@@ -53,8 +53,8 @@ package away3d.materials.passes
 			if (dedicatedMeshes)
 				_outlineMeshes = new Dictionary();
 				
-			_animatableAttributes = Vector.<String>(["va0", "va1"]);
-			_animationTargetRegisters = Vector.<String>(["vt0", "vt1"]);
+			_animatableAttributes = new <String>["va0", "va1"];
+			_animationTargetRegisters = new <String>["vt0", "vt1"];
 			
 		}
 
@@ -73,11 +73,12 @@ package away3d.materials.passes
 
 		private function disposeDedicated(keySubMesh : Object) : void
 		{
-			var mesh : Mesh;
-			mesh = Mesh(_dedicatedMeshes[keySubMesh]);
-			mesh.geometry.dispose();
-			mesh.dispose();
-			delete _dedicatedMeshes[keySubMesh];
+			throw new System.NotImplementedException("ASX#????");
+//			var mesh : Mesh;
+//			mesh = Mesh(_dedicatedMeshes[keySubMesh]); // ASX# this appears to be a bug
+//			mesh.geometry.dispose();
+//			mesh.dispose();
+//			delete _dedicatedMeshes[keySubMesh];
 		}
 
 		override public function dispose() : void
@@ -199,7 +200,7 @@ package away3d.materials.passes
 		{
 			var mesh : Mesh = new Mesh(new Geometry(), null);
 			var dest : SubGeometry = new SubGeometry();
-			var indexLookUp : Array = [];
+			var indexLookUp : Dictionary = new Dictionary();
 			var srcIndices : Vector.<uint> = source.indexData;
 			var srcVertices : Vector.<Number> = source.vertexData;
 			var dstIndices : Vector.<uint> = new Vector.<uint>();
@@ -233,7 +234,7 @@ package away3d.materials.passes
 				}
 
 				if (index > maxIndex) maxIndex = index;
-				dstIndices[indexCount++] = index;
+				dstIndices[indexCount++] = uint(index);
 			}
 
 			dest.autoDeriveVertexNormals = true;

@@ -29,7 +29,7 @@ package away3d.animators.states
 			return _rootDelta;
 		}
 		
-		function AnimationStateBase(animator:IAnimator, animationNode:AnimationNodeBase)
+		public function AnimationStateBase(animator:IAnimator, animationNode:AnimationNodeBase) // ASX#1020
 		{
 			_animator = animator;
 			_animationNode = animationNode;

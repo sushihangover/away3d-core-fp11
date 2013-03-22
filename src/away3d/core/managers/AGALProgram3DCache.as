@@ -10,6 +10,7 @@ package away3d.core.managers
 	import flash.display3D.Context3DProgramType;
 	import flash.display3D.Program3D;
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 
 	use namespace arcane;
 
@@ -19,10 +20,10 @@ package away3d.core.managers
 
 		private var _stage3DProxy : Stage3DProxy;
 
-		private var _program3Ds : Array;
-		private var _ids : Array;
-		private var _usages : Array;
-		private var _keys : Array;
+		private var _program3Ds : Dictionary; // ASX#1025
+		private var _ids : Dictionary;
+		private var _usages : Dictionary;
+		private var _keys : Dictionary;
 
 		private static var _currentId : int;
 
@@ -32,10 +33,10 @@ package away3d.core.managers
 			if (!AGALProgram3DCacheSingletonEnforcer) throw new Error("This class is a multiton and cannot be instantiated manually. Use Stage3DManager.getInstance instead.");
 			_stage3DProxy = stage3DProxy;
 
-			_program3Ds = [];
-			_ids = [];
-			_usages = [];
-			_keys = [];
+			_program3Ds = new Dictionary();
+			_ids = new Dictionary();
+			_usages = new Dictionary();
+			_keys = new Dictionary();
 		}
 
 		public static function getInstance(stage3DProxy : Stage3DProxy) : AGALProgram3DCache
@@ -92,8 +93,9 @@ package away3d.core.managers
 				++_currentId;
 				program = _stage3DProxy._context3D.createProgram();
 
-				var vertexByteCode : ByteArray = new AGALMiniAssembler(Debug.active).assemble(Context3DProgramType.VERTEX, vertexCode);
-				var fragmentByteCode : ByteArray = new AGALMiniAssembler(Debug.active).assemble(Context3DProgramType.FRAGMENT, fragmentCode);
+				// ASX#1021
+				var vertexByteCode : ByteArray = (new AGALMiniAssembler(Debug.active)).assemble(Context3DProgramType.VERTEX, vertexCode);
+				var fragmentByteCode : ByteArray = (new AGALMiniAssembler(Debug.active)).assemble(Context3DProgramType.FRAGMENT, fragmentCode);
 
 				program.upload(vertexByteCode, fragmentByteCode);
 
@@ -133,6 +135,7 @@ package away3d.core.managers
 	}
 }
 
-class AGALProgram3DCacheSingletonEnforcer
+// ASX#1009
+public class AGALProgram3DCacheSingletonEnforcer
 {
 }

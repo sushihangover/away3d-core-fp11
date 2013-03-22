@@ -393,6 +393,7 @@
 		
 		private function generate():void
 		{	
+			var renderSide:RenderSide; // ASX#1018
 			var i:uint;
 			var j:uint;
 			var increase:Number = _offset/_subdivision;
@@ -466,10 +467,11 @@
 			var vector:Vertex = new Vertex();
 			if(_thickness != 0) {
 				var aListsides:Array = ["top","bottom", "right", "left", "front", "back"];
-				var renderSide:RenderSide = new RenderSide();
-				
-				for(i = 0;i<aListsides.length;++i)
-					renderSide[aListsides[i]] = (_ignoreSides.indexOf(aListsides[i]) == -1);
+				renderSide = new RenderSide();
+		
+				throw new System.NotImplementedException("ASX#1016");
+//				for(i = 0;i<aListsides.length;++i)
+//					renderSide[aListsides[i]] = (_ignoreSides.indexOf(aListsides[i]) == -1);
 				
 				switch (_axis) {
 					case X_AXIS:
@@ -488,6 +490,7 @@
 						prop1 = Y_AXIS;
 						prop2 = X_AXIS;
 						prop3 = Z_AXIS;
+						break;
 				}
 				
 				aLines = buildThicknessPoints(prop1, prop2);
@@ -589,19 +592,20 @@
 			
 			var index:uint = 0;
 			var mat:MaterialBase;
-			
+			var v1a:Vertex;
+			var v1b:Vertex;
+			var v1c:Vertex;
+			var v2a:Vertex;
+			var v2b:Vertex;
+			var v2c:Vertex;
+			var v3a:Vertex;
+			var v3b:Vertex;
+			var v3c:Vertex;
+			var v4b:Vertex;
+			var v4c:Vertex;
+
 			if(_thickness > 0){
-				var v1a:Vertex;
-				var v1b:Vertex;
-				var v1c:Vertex;
-				var v2a:Vertex;
-				var v2b:Vertex;
-				var v2c:Vertex;
-				var v3a:Vertex;
-				var v3b:Vertex;
-				var v3c:Vertex;
-				var v4b:Vertex;
-				var v4c:Vertex;
+				// ASX#1018 is this a bug
 			}
 			
 			var step:Number = 1/(_aVectors.length-1);
@@ -794,10 +798,11 @@
 		
 		private function buildThicknessPoints(prop1:String, prop2:String):Array
 		{
+			var i:uint;
 			var anchors:Array = [];
 			var lines:Array = [];
 			
-			for( var i:uint = 0;i<_aVectors.length-1;++i){
+			for( i = 0;i<_aVectors.length-1;++i){
 				
 				if(_aVectors[i][prop1] == 0 && _aVectors[i][prop2] == 0)
 					_aVectors[i][prop1] = EPS;
@@ -1043,6 +1048,12 @@ class RenderSide {
 	public var left:Boolean;
 	public var front:Boolean;
 	public var back:Boolean;
+
+	public indexer this (index:String):Boolean {
+		get {throw new System.NotImplementedException(); }
+		set {throw new System.NotImplementedException(); }
+	}
+
 }
 
 class Line {

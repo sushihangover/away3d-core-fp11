@@ -191,7 +191,7 @@ package away3d.tools.commands
 					outUvs[outIndex*2+1] = v;
 				}
 				
-				outIndices[numOutIndices++] = outIndex;
+				outIndices[numOutIndices++] = uint(outIndex);
 			}
 			
 			outSubGeom.fromVectors(outVertices, outUvs, outNormals, null);

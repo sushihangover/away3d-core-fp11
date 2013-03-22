@@ -158,7 +158,7 @@ package away3d.loaders.parsers
 				
 				_charIndex = _textData.indexOf(creturn, _oldIndex);
 				
-				if(_charIndex == -1)
+				if(int(_charIndex) == -1)
 					_charIndex = _stringLength;
 				
 				line = _textData.substring(_oldIndex, _charIndex);
@@ -190,7 +190,7 @@ package away3d.loaders.parsers
 				if(_state == "#o"){
 					if(_buffer == 0){
 						_id = _dline[0];
-						m = new Matrix3D(Vector.<Number>([parseFloat(_dline[1]), parseFloat(_dline[5]), parseFloat(_dline[9]), 0, parseFloat(_dline[2]), parseFloat(_dline[6]), parseFloat(_dline[10]), 0, parseFloat(_dline[3]), parseFloat(_dline[7]), parseFloat(_dline[11]), 0, parseFloat(_dline[4]), parseFloat(_dline[8]), parseFloat(_dline[12]), 1]));
+						m = new Matrix3D(new <Number>[parseFloat(_dline[1]), parseFloat(_dline[5]), parseFloat(_dline[9]), 0, parseFloat(_dline[2]), parseFloat(_dline[6]), parseFloat(_dline[10]), 0, parseFloat(_dline[3]), parseFloat(_dline[7]), parseFloat(_dline[11]), 0, parseFloat(_dline[4]), parseFloat(_dline[8]), parseFloat(_dline[12]), 1]);
 						
 						++_buffer;
 					} else {
@@ -235,6 +235,7 @@ package away3d.loaders.parsers
 							_geos[_id].f= line.substring(2,line.length);
 							_objs[_id].geo = _geos[_id];
 							_buffer = 0;
+							break;
 					}
 					
 				}
@@ -243,7 +244,7 @@ package away3d.loaders.parsers
 					
 					_id = parseInt(_dline[0]);
 					cont = (_aC.length == 0)? _container : new ObjectContainer3D();
-					m = new Matrix3D(Vector.<Number>([parseFloat(_dline[1]), parseFloat(_dline[5]), parseFloat(_dline[9]), 0, parseFloat(_dline[2]), parseFloat(_dline[6]), parseFloat(_dline[10]), 0, parseFloat(_dline[3]), parseFloat(_dline[7]), parseFloat(_dline[11]), 0, parseFloat(_dline[4]), parseFloat(_dline[8]), parseFloat(_dline[12]), 1]));
+					m = new Matrix3D(new <Number>[parseFloat(_dline[1]), parseFloat(_dline[5]), parseFloat(_dline[9]), 0, parseFloat(_dline[2]), parseFloat(_dline[6]), parseFloat(_dline[10]), 0, parseFloat(_dline[3]), parseFloat(_dline[7]), parseFloat(_dline[11]), 0, parseFloat(_dline[4]), parseFloat(_dline[8]), parseFloat(_dline[12]), 1]);
 					
 					cont.transform = m;
 					cont.name = (_dline[13] == "null" || _dline[13] == undefined)? "cont_"+_id: _dline[13];

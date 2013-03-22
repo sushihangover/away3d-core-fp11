@@ -234,6 +234,7 @@ package away3d.tools.commands
 					ox = 0;
 					oy = 0;
 					oz = 0;
+					break;
 			}
 			
 			// Full transform contains both offset and scale, and is the one

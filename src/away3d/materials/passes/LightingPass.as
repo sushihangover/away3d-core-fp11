@@ -209,6 +209,9 @@ package away3d.materials.passes
 			var numLightTypes : uint = _includeCasters ? 2 : 1;
 			var l : int;
 			var offset : int;
+			var x : Number;
+			var y : Number;
+			var z : Number;
 
 			l = _lightVertexConstantIndex;
 			k = _lightFragmentConstantIndex;
@@ -235,9 +238,9 @@ package away3d.materials.passes
 					_ambientLightB += dirLight._ambientB;
 
 					if (_tangentSpace) {
-						var x : Number = -dirPos.x;
-						var y : Number = -dirPos.y;
-						var z : Number = -dirPos.z;
+						x = -dirPos.x;
+						y = -dirPos.y;
+						z = -dirPos.z;
 						_vertexConstantData[l++] = _inverseSceneMatrix[0]*x + _inverseSceneMatrix[4]*y + _inverseSceneMatrix[8]*z;
 						_vertexConstantData[l++] = _inverseSceneMatrix[1]*x + _inverseSceneMatrix[5]*y + _inverseSceneMatrix[9]*z;
 						_vertexConstantData[l++] = _inverseSceneMatrix[2]*x + _inverseSceneMatrix[6]*y + _inverseSceneMatrix[10]*z;
@@ -351,7 +354,8 @@ package away3d.materials.passes
 
 			if (len > _numLightProbes) len = _numLightProbes;
 
-			for (var i : uint = 0; i < len; ++i) {
+			var i : uint;
+			for (i = 0; i < len; ++i) {
 				probe = lightProbes[_lightProbesOffset + i];
 
 				if (addDiff)

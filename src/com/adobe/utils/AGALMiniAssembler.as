@@ -44,7 +44,7 @@ package com.adobe.utils
 	{		// ======================================================================
 		//	Constants
 		// ----------------------------------------------------------------------				
-		protected static const REGEXP_OUTER_SPACES:RegExp		= /^\s+|\s+$/g;
+		protected static var REGEXP_OUTER_SPACES:RegExp		= new RegExp("^\\s+|\\s+$", "g"); // /^\s+|\s+$/g;
 		
 		// ======================================================================
 		//	Properties
@@ -116,7 +116,7 @@ package com.adobe.utils
 			
 			for ( i = 0; i < lng && _error == ""; i++ )
 			{
-				var line:String = new String( lines[i] );
+				var line:String = lines[i] as String; // new String( lines[i] );
 				line = line.replace( REGEXP_OUTER_SPACES, "" );
 				
 				// remove comments
@@ -135,7 +135,7 @@ package com.adobe.utils
 				
 				// find opcode
 				var opCode:Array = line.match( /^\w{3}/ig );
-				if ( !opCode ) 
+				if ( opCode == null ) 
 				{
 					if ( line.length >= 3 )
 						trace( "warning: bad line "+i+": "+lines[i] );
@@ -161,13 +161,13 @@ package com.adobe.utils
 					_error = "error: opcode requires version 2.";
 					break;					
 				}
-					
+				
 				if ( ( opFound.flags & OP_VERT_ONLY ) && isFrag )
 				{
 					_error = "error: opcode is only allowed in vertex programs.";
 					break;
 				}		
-					
+				
 				if ( ( opFound.flags & OP_FRAG_ONLY ) && !isFrag )
 				{
 					_error = "error: opcode is only allowed in fragment programs.";
@@ -191,7 +191,7 @@ package com.adobe.utils
 				// will match both syntax
 				regs = line.match( /vc\[([vof][acostdip]?)(\d*)?(\.[xyzw](\+\d{1,3})?)?\](\.[xyzw]{1,4})?|([vof][acostdip]?)(\d*)?(\.[xyzw]{1,4})?/gi );
 				
-				if ( !regs || regs.length != opFound.numRegister )
+				if ( regs == null || regs.length != opFound.numRegister )
 				{
 					_error = "error: wrong number of operands. found "+regs.length+" but expected "+opFound.numRegister+".";
 					break;					
@@ -200,11 +200,12 @@ package com.adobe.utils
 				var badreg:Boolean	= false;
 				var pad:uint		= 64 + 64 + 32;
 				var regLength:uint	= regs.length;
+				var j:int;
 				
-				for ( var j:int = 0; j < regLength; j++ )
+				for ( j = 0; j < regLength; j++ )
 				{
 					var isRelative:Boolean = false;
-					var relreg:Array = regs[ j ].match( /\[.*\]/ig );
+					var relreg:Array = String(regs[ j ]).match( /\[.*\]/ig );
 					if ( relreg && relreg.length > 0 )
 					{
 						regs[ j ] = regs[ j ].replace( relreg[ 0 ], "0" );
@@ -214,8 +215,8 @@ package com.adobe.utils
 						isRelative = true;
 					}
 					
-					var res:Array = regs[j].match( /^\b[A-Za-z]{1,2}/ig );
-					if ( !res ) 
+					var res:Array = String(regs[ j ]).match( /^\b[A-Za-z]{1,2}/ig );
+					if ( res == null ) 
 					{
 						_error = "error: could not parse operand "+j+" ("+regs[j]+").";
 						badreg = true;
@@ -259,13 +260,13 @@ package com.adobe.utils
 						}
 					}
 					
-					regs[j] = regs[j].slice( regs[j].search( regFound.name ) + regFound.name.length );
+					regs[j] = String(regs[ j ]).slice( int(String(regs[j]).search( regFound.name ) + regFound.name.length) );
 					//trace( "REGNUM: " +regs[j] );
-					var idxmatch:Array = isRelative ? relreg[0].match( /\d+/ ) : regs[j].match( /\d+/ );
+					var idxmatch:Array = isRelative ? relreg[0].match( /\d+/ ) : String(regs[ j ]).match( /\d+/ );
 					var regidx:uint = 0;
 					
 					if ( idxmatch )
-						regidx = uint( idxmatch[0] );
+						regidx = uint( parseInt(String(idxmatch[0])) );
 					
 					if ( regFound.range < regidx )
 					{
@@ -275,12 +276,13 @@ package com.adobe.utils
 					}
 					
 					var regmask:uint		= 0;
-					var maskmatch:Array		= regs[j].match( /(\.[xyzw]{1,4})/ );
+					var maskmatch:Array		= String(regs[ j ]).match( /(\.[xyzw]{1,4})/ );
 					var isDest:Boolean		= ( j == 0 && !( opFound.flags & OP_NO_DEST ) );
 					var isSampler:Boolean	= ( j == 2 && ( opFound.flags & OP_SPECIAL_TEX ) );
 					var reltype:uint		= 0;
 					var relsel:uint			= 0;
 					var reloffset:int		= 0;
+					var k:int;
 					
 					if ( isDest && isRelative )
 					{
@@ -293,10 +295,10 @@ package com.adobe.utils
 					{
 						regmask = 0;
 						var cv:uint; 
-						var maskLength:uint = maskmatch[0].length;
-						for ( var k:int = 1; k < maskLength; k++ )
+						var maskLength:uint = String(maskmatch[0]).length;
+						for ( k = 1; k < maskLength; k++ )
 						{
-							cv = maskmatch[0].charCodeAt(k) - "x".charCodeAt(0);
+							cv = String(maskmatch[0]).charCodeAt(k) - "x".charCodeAt(0);
 							if ( cv > 2 )
 								cv = 3;
 							if ( isDest )
@@ -367,7 +369,7 @@ package com.adobe.utils
 							for ( k = 0; k<optsLength; k++ )
 							{
 								if ( verbose )
-									trace( "    opt: "+opts[k] );
+									trace( "    opt: "+String(opts[k]) );
 								var optfound:Sampler = SAMPLEMAP [opts[k]];
 								if ( optfound == null )
 								{
@@ -524,7 +526,7 @@ package com.adobe.utils
 			OPMAP[ SGN ] = new OpCode( SGN, 2, 0x2b, 0 );
 			OPMAP[ SEQ ] = new OpCode( SEQ, 3, 0x2c, 0 );
 			OPMAP[ SNE ] = new OpCode( SNE, 3, 0x2d, 0 );			
-		
+			
 			
 			SAMPLEMAP[ RGBA ]		= new Sampler( RGBA,		SAMPLER_TYPE_SHIFT,			0 );
 			SAMPLEMAP[ DXT1 ]		= new Sampler( DXT1,		SAMPLER_TYPE_SHIFT,			1 );
@@ -550,9 +552,9 @@ package com.adobe.utils
 		// ======================================================================
 		//	Constants
 		// ----------------------------------------------------------------------
-		private static const OPMAP:Dictionary					= new Dictionary();
-		private static const REGMAP:Dictionary					= new Dictionary();
-		private static const SAMPLEMAP:Dictionary				= new Dictionary();
+		private static var OPMAP:Dictionary					= new Dictionary();
+		private static var REGMAP:Dictionary					= new Dictionary();
+		private static var SAMPLEMAP:Dictionary				= new Dictionary();
 		
 		private static const MAX_NESTING:int					= 4;
 		private static const MAX_OPCODES:int					= 2048;
@@ -703,7 +705,7 @@ package com.adobe.utils
 		// ======================================================================
 		//	Methods
 		// ----------------------------------------------------------------------
-		public function toString():String
+		public override function ToString():String
 		{
 			return "[OpCode name=\""+_name+"\", numRegister="+_numRegister+", emitCode="+_emitCode+", flags="+_flags+"]";
 		}
@@ -747,7 +749,7 @@ package com.adobe.utils
 		// ======================================================================
 		//	Methods
 		// ----------------------------------------------------------------------
-		public function toString():String
+		public override function ToString():String
 		{
 			return "[Register name=\""+_name+"\", longName=\""+_longName+"\", emitCode="+_emitCode+", range="+_range+", flags="+ _flags+"]";
 		}
@@ -785,7 +787,7 @@ package com.adobe.utils
 		// ======================================================================
 		//	Methods
 		// ----------------------------------------------------------------------
-		public function toString():String
+		public override function ToString():String
 		{
 			return "[Sampler name=\""+_name+"\", flag=\""+_flag+"\", mask="+mask+"]";
 		}

@@ -223,7 +223,7 @@ package away3d.loaders.parsers
 			_materialNames = new Vector.<String>();
 			_byteData.position = _offsetSkins;
 			
-			var regExp:RegExp = new RegExp("[^a-zA-Z0-9\\_\/.]", "g");
+			var regExp:RegExp = new RegExp("[^a-zA-Z0-9\\_\x2F.]", "g"); //ASX#1004
 			for (var i : uint = 0; i < _numSkins; ++i) {
 				name = _byteData.readUTFBytes(64);
 				name = name.replace(regExp, "");
@@ -298,8 +298,8 @@ package away3d.loaders.parsers
 			_finalUV = new Vector.<Number>(len * 2, true);
 			
 			for (i = 0; i < len; ++i) {
-				_finalUV[uint(i << 1)] = _uvs[uint(_uvIndices[i] << 1)];
-				_finalUV[uint(((i << 1) + 1))] = _uvs[uint((_uvIndices[i] << 1) + 1)];
+				_finalUV[uint(i << 1)] = _uvs[uint(_uvIndices[i]) << 1]; // ASX#1023
+				_finalUV[uint(((i << 1) + 1))] = _uvs[(uint(_uvIndices[i]) << 1) + 1];
 			}
 			
 			_parsedFaces = true;
@@ -393,8 +393,8 @@ package away3d.loaders.parsers
 
 				subGeom.fromVectors(fvertices, _finalUV, null, null);
 				subGeom.updateIndexData(_indices);
-				subGeom.vertexNormalData;
-				subGeom.vertexTangentData;
+				var temp0:Vector.<Number> = subGeom.vertexNormalData;
+				var temp1:Vector.<Number> = subGeom.vertexTangentData;
 				subGeom.autoDeriveVertexNormals = false;
 				subGeom.autoDeriveVertexTangents = false;
 

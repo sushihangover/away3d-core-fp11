@@ -85,6 +85,7 @@ package away3d.animators.nodes
 					name = name + "LocalDynamic";
 					break;
 				default:
+					break; //ASX#1000
 			}
 			
 			this.name = name;

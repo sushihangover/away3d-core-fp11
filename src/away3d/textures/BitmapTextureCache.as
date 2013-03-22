@@ -54,4 +54,5 @@ package away3d.textures
 	}
 }
 
-class SingletonEnforcer {}
+// ASX#1009
+public class SingletonEnforcer {}

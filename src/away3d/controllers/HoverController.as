@@ -22,8 +22,8 @@ package away3d.controllers
 		private var _panAngle:Number = 0;
 		private var _tiltAngle:Number = 90;
 		private var _distance:Number = 1000;
-		private var _minPanAngle:Number = -Infinity;
-		private var _maxPanAngle:Number = Infinity;
+		private var _minPanAngle:Number = Number.NEGATIVE_INFINITY;
+		private var _maxPanAngle:Number = Number.POSITIVE_INFINITY;
 		private var _minTiltAngle:Number = -90;
 		private var _maxTiltAngle:Number = 90;
 		private var _steps:uint = 8;
@@ -241,8 +241,8 @@ package away3d.controllers
 			this.distance = distance;
 			this.panAngle = panAngle;
 			this.tiltAngle = tiltAngle;
-			this.minPanAngle = minPanAngle || -Infinity;
-			this.maxPanAngle = maxPanAngle || Infinity;
+			this.minPanAngle = !isNaN(minPanAngle) ? minPanAngle : Number.NEGATIVE_INFINITY;
+			this.maxPanAngle = !isNaN(maxPanAngle) ? maxPanAngle : Number.POSITIVE_INFINITY;
 			this.minTiltAngle = minTiltAngle;
 			this.maxTiltAngle = maxTiltAngle;
 			this.steps = steps;

@@ -233,7 +233,8 @@ package away3d.materials.passes
 
 			k = _lightFragmentConstantIndex;
 
-			for (var cast : int = 0; cast < numLightTypes; ++cast) {
+			var cast:int;
+			for (cast = 0; cast < numLightTypes; ++cast) {
 				var dirLights : Vector.<DirectionalLight> = cast ? _lightPicker.castingDirectionalLights : _lightPicker.directionalLights;
 				len = dirLights.length;
 				total += len;

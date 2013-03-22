@@ -390,13 +390,15 @@ package away3d.tools.helpers
 			var nuvs:Vector.<Number> = new Vector.<Number>();
 			var nindices:Vector.<uint> = new Vector.<uint>();
 			 
-			var defaultUVS:Vector.<Number> = Vector.<Number>([0, 1, .5, 0, 1, 1, .5, 0]);
+			var defaultUVS:Vector.<Number> = new <Number>[0, 1, .5, 0, 1, 1, .5, 0];
 			var uvid:uint = 0;
-			 
+			var dShared:Dictionary; //ASX#1018
+			var uv:UV;
+			var ref:String;
+
 			if(shareVertices){
-				var dShared:Dictionary = new Dictionary();
-				var uv:UV = new UV();
-				var ref:String;
+				dShared = new Dictionary();
+				uv = new UV();
 			}
 			
 			var uvind:uint;

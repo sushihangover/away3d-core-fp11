@@ -115,7 +115,7 @@ package away3d.stereo
 		
 		protected function updateFocusPoint() : void
 		{
-			if (_focus == Infinity) {
+			if (_focus == Number.POSITIVE_INFINITY) {
 				_focusInfinity = true;
 			}
 			else {

@@ -27,7 +27,9 @@ package away3d.materials.methods
 		 */
 		public function CelSpecularMethod(specularCutOff : Number = .5, baseSpecularMethod : BasicSpecularMethod = null)
 		{
-			super(clampSpecular, baseSpecularMethod);
+			throw new System.NotImplementedException("ASX#1017");
+			super(null, baseSpecularMethod);
+			//super(clampSpecular, baseSpecularMethod);
 			_specularCutOff = specularCutOff;
 		}
 

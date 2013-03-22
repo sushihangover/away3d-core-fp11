@@ -176,9 +176,9 @@ package away3d.core.base
 				// if we encounter a new index, assign it a new condensed index
 				if (dic[oldIndex] == undefined) {
 					dic[oldIndex] = newIndex;
-					_condensedIndexLookUp[newIndex++] = oldIndex;
-					_condensedIndexLookUp[newIndex++] = oldIndex+1;
-					_condensedIndexLookUp[newIndex++] = oldIndex+2;
+					_condensedIndexLookUp[newIndex++] = uint(oldIndex); // ASX#1014
+					_condensedIndexLookUp[newIndex++] = uint(oldIndex+1);
+					_condensedIndexLookUp[newIndex++] = uint(oldIndex+2);
 				}
 				_condensedJointIndexData[i] = dic[oldIndex];
 			}

@@ -30,10 +30,11 @@ package away3d.tools.helpers
 		*/
 		public function debug(mesh:Mesh, scene:Scene3D, displayNormals:Boolean = true, displayVertexNormals:Boolean = false, displayTangents:Boolean = false):MeshDebugData
 		{
+			var meshDebugData:MeshDebugData; // ASX#1018
 			meshDebugData = isMeshDebug(mesh);
 			
 			if(!meshDebugData){
-				var meshDebugData:MeshDebugData = new MeshDebugData();
+				meshDebugData = new MeshDebugData();
 				meshDebugData.meshDebug = new MeshDebug();
 				meshDebugData.mesh = mesh;
 				meshDebugData.scene = scene;
@@ -269,12 +270,12 @@ package away3d.tools.helpers
 		 
 	}
 }
- 
-class MeshDebugData {
-	import away3d.containers.Scene3D;
-	import away3d.entities.Mesh;
-	import away3d.tools.helpers.data.MeshDebug;
-	
+import away3d.containers.Scene3D; // ASX#1008
+import away3d.entities.Mesh;
+import away3d.tools.helpers.data.MeshDebug;
+
+// inconsistent accessibility
+public class MeshDebugData {
 	public var mesh:Mesh;
 	public var meshDebug:MeshDebug;
 	public var scene:Scene3D;

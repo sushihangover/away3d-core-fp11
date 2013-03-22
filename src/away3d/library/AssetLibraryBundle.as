@@ -658,6 +658,6 @@ package away3d.library
 }
 
 // singleton enforcer
-class AssetLibraryBundleSingletonEnforcer
+public class AssetLibraryBundleSingletonEnforcer // ASX#1009
 {
 }

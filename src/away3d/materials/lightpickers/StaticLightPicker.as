@@ -34,7 +34,7 @@ package away3d.materials.lightpickers
 			if (_lights) clearListeners();
 
 			_lights = value;
-			_allPickedLights = Vector.<LightBase>(value);
+			_allPickedLights = new Vector.<LightBase>(value);
 			_pointLights = new Vector.<PointLight>();
 			_castingPointLights = new Vector.<PointLight>();
 			_directionalLights = new Vector.<DirectionalLight>();
@@ -83,7 +83,7 @@ package away3d.materials.lightpickers
 		{
 			var len : uint = _lights.length;
 			for (var i : int = 0; i < len; ++i)
-				_lights[i].removeEventListener(LightEvent.CASTS_SHADOW_CHANGE, onCastShadowChange);
+				_lights[i].removeEventListener(LightEvent.CASTS_SHADOW_CHANGE, Function(this.onCastShadowChange));
 		}
 
 		private function onCastShadowChange(event : LightEvent) : void

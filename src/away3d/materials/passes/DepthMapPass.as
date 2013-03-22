@@ -22,9 +22,9 @@
 		public function DepthMapPass()
 		{
 			super();
-			_data = Vector.<Number>([	1.0, 255.0, 65025.0, 16581375.0,
+			_data = new <Number>[	1.0, 255.0, 65025.0, 16581375.0,
 										1.0 / 255.0, 1.0 / 255.0, 1.0 / 255.0, 0.0,
-										0.0, 0.0, 0.0, 0.0]);
+										0.0, 0.0, 0.0, 0.0];
 		}
 
 		/**
@@ -89,7 +89,7 @@
 		/**
 		 * @inheritDoc
 		 */
-		arcane override function getFragmentCode(code:String) : String
+		arcane override function getFragmentCode(code_unused:String) : String
 		{
 			var wrap : String = _repeat ? "wrap" : "clamp";
 			var filter : String;
@@ -114,6 +114,7 @@
 						break;
 					default:
 						format = "";
+						break;
 				}
 				code += "tex ft3, v1, fs0 <2d,"+filter+","+format+wrap+">\n" +
 						"sub ft3.w, ft3.w, fc2.x\n" +

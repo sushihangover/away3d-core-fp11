@@ -556,6 +556,18 @@ package away3d.extrusions
 			_varr = _doubles = null;
 		}
 
+		// ASX#1003 
+		private function getDouble(x : Number, y : Number, z : Number) : Vertex
+		{
+			for (var i : int = 0; i < _doubles.length; ++i) {
+				if (_doubles[i].x == x && _doubles[i].y == y && _doubles[i].z == z) {
+					return _doubles[i];
+				}
+			}
+			return new Vertex(x, y, z);
+		}
+
+
 		private function extrudePoints(points1 : Vector.<Vector3D>, points2 : Vector.<Vector3D>, vscale : Number, indexv : int, indexp : Number) : void
 		{
 			var i : int;
@@ -580,11 +592,14 @@ package away3d.extrusions
 			var countloop : int = points1.length;
 
 			var mat : MaterialBase;
+			var bleft : Vector3D;
+			var bu : Number;
+			var bincu : Number;
+			var tdist : Number;
+			var dist : Number;
 
 			if (_mapFit) {
-				var dist : Number = 0;
-				var tdist : Number;
-				var bleft : Vector3D;
+				dist = 0;
 				for (i = 0; i < countloop; ++i) {
 					for (j = 0; j < countloop; ++j) {
 						if (i != j) {
@@ -598,19 +613,10 @@ package away3d.extrusions
 				}
 
 			} else {
-				var bu : Number = 0;
-				var bincu : Number = 1 / (countloop - 1);
+				bu = 0;
+				bincu = 1 / (countloop - 1);
 			}
 
-			function getDouble(x : Number, y : Number, z : Number) : Vertex
-			{
-				for (var i : int = 0; i < _doubles.length; ++i) {
-					if (_doubles[i].x == x && _doubles[i].y == y && _doubles[i].z == z) {
-						return _doubles[i];
-					}
-				}
-				return new Vertex(x, y, z);
-			}
 
 			for (i = 0; i < countloop; ++i) {
 				stepx = points2[i].x - points1[i].x;
@@ -973,7 +979,8 @@ package away3d.extrusions
 			var tmpV : Vector3D = new Vector3D();
 			var prevV : Vector3D;
 
-			for (var i : uint = 0; i < segs.length; ++i) {
+			var i:uint;
+			for (i = 0; i < segs.length; ++i) {
 				seg = segs[i];
 				for (j = 0; j < _subdivision; ++j) {
 					if (prevV) estLength += Vector3D.distance(prevV, seg[j]);
@@ -1035,11 +1042,12 @@ package away3d.extrusions
 
 		private function generateUlist() : void
 		{
-			_distributedU = Vector.<Number>([0]);
+			_distributedU = new <Number>[0];
 			var tdist : Number = 0;
 			var dist : Number = 0;
 			var tmpDists : Vector.<Number> = new Vector.<Number>();
-			for (var i : uint = 0; i < _profile.length - 1; ++i) {
+			var i:uint;
+			for (i = 0; i < _profile.length - 1; ++i) {
 				tmpDists[i] = Vector3D.distance(_profile[i], _profile[i + 1]);
 				tdist += tmpDists[i];
 			}
@@ -1089,17 +1097,21 @@ package away3d.extrusions
 			if (rescale) var lastscale : Vector3D = (_scales[0] == null) ? new Vector3D(1, 1, 1) : _scales[0];
 
 			var rotate : Boolean = (_rotations != null);
+			var lastrotate : Vector3D;
+			var nextrotate : Vector3D;
+			var rotation : Vector.<Vector3D>;
+			var tweenrot : Vector3D;
 
 			if (rotate && _rotations.length > 0) {
-				var lastrotate : Vector3D = _rotations[0];
-				var nextrotate : Vector3D;
-				var rotation : Vector.<Vector3D> = new Vector.<Vector3D>();
-				var tweenrot : Vector3D;
+				lastrotate= _rotations[0];
+				rotation = new Vector.<Vector3D>();
 			}
 
+			var nextscale : Vector3D;
+			var vScales : Vector.<Vector3D>;
 			if (_smoothScale && rescale) {
-				var nextscale : Vector3D = new Vector3D(1, 1, 1);
-				var vScales : Vector.<Vector3D> = Vector.<Vector3D>([lastscale]);
+				nextscale = new Vector3D(1, 1, 1);
+				vScales = new <Vector3D>[lastscale];
 				if (_scales.length != _path.numSegments + 2) {
 					var lastScl : Vector3D = _scales[_scales.length - 1];
 					while (_scales.length != _path.numSegments + 2) {
@@ -1113,7 +1125,7 @@ package away3d.extrusions
 				if (rotate) {
 					lastrotate = (_rotations[i] == null) ? lastrotate : _rotations[i];
 					nextrotate = (_rotations[i + 1] == null) ? lastrotate : _rotations[i + 1];
-					rotation = Vector.<Vector3D>([lastrotate]);
+					rotation = new <Vector3D>[lastrotate];
 					rotation = rotation.concat(Vector3DUtils.subdivide(lastrotate, nextrotate, _subdivision));
 				}
 

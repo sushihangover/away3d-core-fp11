@@ -143,6 +143,7 @@ package away3d.loaders.parsers
 					default:
 						if (!_reachedEOF)
 							sendUnknownKeywordError();
+						break;
 				}
 
 				if (_reachedEOF) {
@@ -344,7 +345,8 @@ package away3d.loaders.parsers
 				vertices[v1] = vertices[v2] = vertices[v3] = 0;
 
 				nonZeroWeights = 0;
-				for (var j : int = 0; j < vertex.countWeight; ++j) {
+				var j:int;
+				for (j = 0; j < vertex.countWeight; ++j) {
 					weight = weights[vertex.startWeight + j];
 					if (weight.bias > 0) {
 						bindPose = _bindPoses[weight.joint];
@@ -373,8 +375,8 @@ package away3d.loaders.parsers
 			subGeom.updateIndexData(indices);
 			subGeom.fromVectors(vertices, uvs, null, null);
 			// cause explicit updates
-			subGeom.vertexNormalData;
-			subGeom.vertexTangentData;
+			var temp0:Vector.<Number> = subGeom.vertexNormalData;
+			var temp1:Vector.<Number> = subGeom.vertexTangentData;
 			// turn auto updates off because they may be animated and set explicitly
 			subGeom.autoDeriveVertexTangents = false;
 			subGeom.autoDeriveVertexNormals = false;

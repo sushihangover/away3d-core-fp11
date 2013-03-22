@@ -240,7 +240,7 @@
 							pxy = ((px4*incXR) + (px3*incXL))*incYL;
 							 
 							//_smoothedHeightMap.setPixel(k+i, l+j, pxy+pxx << 16 |  0xFF-(pxy+pxx) << 8 | 0xFF-(pxy+pxx) );
-							_smoothedHeightMap.setPixel(k+i, l+j, pxy+pxx << 16 |  pxy+pxx << 8 | pxy+pxx );
+							_smoothedHeightMap.setPixel(k+i, l+j, uint(pxy+pxx) << 16 |  uint(pxy+pxx) << 8 | uint(pxy+pxx) );
 						 }
 					}
 				}

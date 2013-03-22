@@ -43,7 +43,9 @@ package away3d.materials.methods
 		 */
 		public function SubsurfaceScatteringDiffuseMethod(depthMapSize : int = 512, depthMapOffset : Number = 15)
 		{
-			super(scatterLight);
+			throw new System.NotImplementedException("ASX#1017");
+			super(null);
+			//super(scatterLight);
 			_passes = new Vector.<MaterialPassBase>();
 			_depthPass = new SingleObjectDepthPass(depthMapSize, depthMapOffset);
 			_passes.push(_depthPass);

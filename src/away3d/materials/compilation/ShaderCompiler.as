@@ -7,6 +7,8 @@ package away3d.materials.compilation {
 	import away3d.materials.methods.ShaderMethodSetup;
 	import away3d.materials.methods.ShadingMethodBase;
 
+	use namespace arcane; // ASX#1001
+
 	public class ShaderCompiler
 	{
 		protected var _sharedRegisters : ShaderRegisterData;
@@ -63,8 +65,6 @@ package away3d.materials.compilation {
 		protected var _needUVAnimation:Boolean;
 		protected var _UVTarget:String;
 		protected var _UVSource:String;
-
-		use namespace arcane;
 
 		public function ShaderCompiler()
 		{
@@ -154,8 +154,8 @@ package away3d.materials.compilation {
 			initRegisterIndices();
 			initLightData();
 
-			_animatableAttributes = Vector.<String>(["va0"]);
-			_animationTargetRegisters = Vector.<String>(["vt0"]);
+			_animatableAttributes = new <String>["va0"];
+			_animationTargetRegisters = new <String>["vt0"];
 			_vertexCode = "";
 			_fragmentCode = "";
 

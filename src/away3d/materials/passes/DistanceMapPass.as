@@ -23,9 +23,9 @@
 		public function DistanceMapPass()
 		{
 			super();
-			_fragmentData = Vector.<Number>([	1.0, 255.0, 65025.0, 16581375.0,
+			_fragmentData = new <Number>[	1.0, 255.0, 65025.0, 16581375.0,
 												1.0 / 255.0, 1.0 / 255.0, 1.0 / 255.0, 0.0,
-												0.0, 0.0, 0.0, 0.0]);
+												0.0, 0.0, 0.0, 0.0];
 			_vertexData = new Vector.<Number>(4, true);
 			_vertexData[3] = 1;
 			_numUsedVertexConstants = 9;
@@ -117,6 +117,7 @@
 						break;
 					default:
 						format = "";
+						break;
 				}
 				code += "tex ft3, v1, fs0 <2d,"+filter+","+format+wrap+">\n" +
 						"sub ft3.w, ft3.w, fc2.x\n" +

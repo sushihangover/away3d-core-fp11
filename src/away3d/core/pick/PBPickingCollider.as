@@ -44,8 +44,9 @@ package away3d.core.pick
 			super.setLocalRay(localPosition, localDirection);
 			
 			//update ray
-			_rayTriangleKernel.data.rayStartPoint.value = [ rayPosition.x, rayPosition.y, rayPosition.z ];
-			_rayTriangleKernel.data.rayDirection.value = [ rayDirection.x, rayDirection.y, rayDirection.z ];
+			throw new System.NotImplementedException("ASX#1016");
+//			_rayTriangleKernel.data.rayStartPoint.value = [ rayPosition.x, rayPosition.y, rayPosition.z ];
+//			_rayTriangleKernel.data.rayDirection.value = [ rayDirection.x, rayDirection.y, rayDirection.z ];
 		}
 		
 		/**
@@ -53,6 +54,8 @@ package away3d.core.pick
 		 */
 		public function testSubMeshCollision(subMesh:SubMesh, pickingCollisionVO:PickingCollisionVO, shortestCollisionDistance:Number):Boolean
 		{
+			throw new System.NotImplementedException("ASX#1016");
+#if false
 			var cx:Number, cy:Number, cz:Number;
 			var u:Number, v:Number, w:Number;
 			var indexData:Vector.<uint> = subMesh.indexData;
@@ -119,6 +122,7 @@ package away3d.core.pick
 			}
 			
 			return false;
+#endif
 		}
 		
 		private function evaluateArrayAsGrid( array:Vector.<Number> ):Point {

@@ -240,6 +240,7 @@ package away3d.materials.methods
 
 					break;
 				default:
+					break; // ASX#1000
 			}
 
 			if (_useTexture) {

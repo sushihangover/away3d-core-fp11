@@ -431,21 +431,21 @@
 			for (i = 1; i <= _vSegments; i++) {
 				for (j = 1; j <= _uSegments; j++) {
 					if (_invert) {
-						indices[iBase++] = vPos;
-						indices[iBase++] = vPos+1;
-						indices[iBase++] = vPos+_uSegments+1;
+						indices[iBase++] = uint(vPos);
+						indices[iBase++] = uint(vPos+1);
+						indices[iBase++] = uint(vPos+_uSegments+1);
 
-						indices[iBase++] = vPos+_uSegments+1;
-						indices[iBase++] = vPos+1;
-						indices[iBase++] = vPos+_uSegments+2;
+						indices[iBase++] = uint(vPos+_uSegments+1);
+						indices[iBase++] = uint(vPos+1);
+						indices[iBase++] = uint(vPos+_uSegments+2);
 					} else {
-						indices[iBase++] = vPos+1;
-						indices[iBase++] = vPos;
-						indices[iBase++] = vPos+_uSegments+1;
+						indices[iBase++] = uint(vPos+1);
+						indices[iBase++] = uint(vPos);
+						indices[iBase++] = uint(vPos+_uSegments+1);
 
-						indices[iBase++] = vPos+1;
-						indices[iBase++] = vPos+_uSegments+1;
-						indices[iBase++] = vPos+_uSegments+2;
+						indices[iBase++] = uint(vPos+1);
+						indices[iBase++] = uint(vPos+_uSegments+1);
+						indices[iBase++] = uint(vPos+_uSegments+2);
 					}
 					vPos++;
 				}

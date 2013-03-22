@@ -157,6 +157,7 @@ package away3d.loaders.parsers
 					default:
 						if (!_reachedEOF)
 							sendUnknownKeywordError();
+						break;
 				}
 				
 				if (_reachedEOF) {

@@ -67,6 +67,7 @@ package away3d.tools.commands
 						m[_axis] = -val;
 						bounds[i] = null;
 					}
+					break;
 			}
 			
 			bounds = null;
@@ -119,6 +120,7 @@ package away3d.tools.commands
 				
 				case "":
 					base = 0;
+					break;
 			}
 			
 			for(var i:uint = 0;i<aObjs.length;++i)
@@ -174,7 +176,7 @@ package away3d.tools.commands
 		
 		private static function getMin(a:Array, prop:String):Number
 		{
-			var min:Number = Infinity;
+			var min:Number = Number.POSITIVE_INFINITY;
 			for(var i:uint = 0;i<a.length;++i)
 				min = Math.min(a[i][prop], min);
 			
@@ -183,7 +185,7 @@ package away3d.tools.commands
 		
 		private static function getMax(a:Array, prop:String):Number
 		{
-			var max:Number = -Infinity;
+			var max:Number = Number.NEGATIVE_INFINITY;
 			for(var i:uint = 0;i<a.length;++i)
 				max = Math.max(a[i][prop], max);
 			
@@ -236,6 +238,7 @@ package away3d.tools.commands
 				
 				case Z_AXIS:
 					prop = (_condition == POSITIVE)? "maxZ" : "minZ";
+				break;
 			}
 			 
 			return prop;
@@ -243,7 +246,7 @@ package away3d.tools.commands
 		
 		private static function getMinBounds(bounds:Vector.<MeshBound>):Number
 		{
-			var min:Number = Infinity;
+			var min:Number = Number.POSITIVE_INFINITY;
 			var mb:MeshBound;
 			
 			for(var i:uint = 0;i<bounds.length;++i){
@@ -259,6 +262,7 @@ package away3d.tools.commands
 					
 					case Z_AXIS:
 						min = Math.min(mb.maxZ+mb.mesh.z, min);
+					break;
 				}
 			}
 			
@@ -267,7 +271,7 @@ package away3d.tools.commands
 		
 		private static function getMaxBounds(bounds:Vector.<MeshBound>):Number
 		{
-			var max:Number = -Infinity;
+			var max:Number = Number.NEGATIVE_INFINITY;
 			var mb:MeshBound;
 			
 			for(var i:uint = 0;i<bounds.length;++i){
@@ -283,6 +287,7 @@ package away3d.tools.commands
 					
 					case Z_AXIS:
 						max = Math.max(mb.maxZ+mb.mesh.z, max);
+					break;
 				}
 			}
 			
@@ -291,10 +296,10 @@ package away3d.tools.commands
 		
 	}
 }
+import away3d.entities.Mesh; // ASX#1008
 
 class MeshBound {
-	import away3d.entities.Mesh;
-	
+
 	public var mesh:Mesh;
 	public var minX:Number;
 	public var minY:Number;
@@ -302,4 +307,9 @@ class MeshBound {
 	public var maxX:Number;
 	public var maxY:Number;
 	public var maxZ:Number;
+
+	public indexer this (index:String):Number {
+		get {throw new System.NotImplementedException(); }
+		set {throw new System.NotImplementedException(); }
+	}
 }

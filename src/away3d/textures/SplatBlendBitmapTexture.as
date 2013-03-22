@@ -42,9 +42,10 @@ package away3d.textures
 		{
 			if (_numSplattingLayers <= 1) return;
 			var shader : Shader = new Shader(new NormalizeKernel());
-			shader.data.numLayers = _numSplattingLayers;
-			shader.data.src.input = bitmapData;
-			new ShaderJob(shader, bitmapData).start(true);
+			throw new System.NotImplementedException("ASX# runtime not implemented");
+			// shader.data.numLayers = _numSplattingLayers;
+			// shader.data.src.input = bitmapData;
+			// new ShaderJob(shader, bitmapData).start(true);
 		}
 
 		override public function dispose() : void

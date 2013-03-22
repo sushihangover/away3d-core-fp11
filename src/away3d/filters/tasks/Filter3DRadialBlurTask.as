@@ -34,7 +34,7 @@ package away3d.filters.tasks
 			_blurWidth = blurWidth;
 			_cx = cx;
 			_cy = cy;
-			_data = Vector.<Number>([0, 0, 0, 0, 0, 0, 0, 0,0,1,LAYERS,LAYERS-1]);
+			_data = new <Number>[0, 0, 0, 0, 0, 0, 0, 0,0,1,LAYERS,LAYERS-1];
 			resetUniforms();
 		}
 

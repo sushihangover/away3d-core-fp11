@@ -17,7 +17,7 @@ package away3d.filters.tasks
 		public function Filter3DCompositeTask(blendMode : String, exposure : Number = 1)
 		{
 			super();
-			_data = Vector.<Number>([ exposure, 0, 0, 0 ]);
+			_data = new <Number>[ exposure, 0, 0, 0 ];
 			_blendMode = blendMode;
 		}
 

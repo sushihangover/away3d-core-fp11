@@ -52,7 +52,7 @@ package away3d.materials.utils
 			if (fillAlpha > 1) fillAlpha = 1;
 			else if (fillAlpha < 0) fillAlpha = 0;
 
-			bitmapData = new BitmapData(width, height, fillAlpha == 1? false : true, (fillAlpha  << 24) | (fillColor & 0xffffff));
+			bitmapData = new BitmapData(width, height, fillAlpha == 1? false : true, (uint(fillAlpha)  << 24) | (fillColor & 0xffffff));
 
 			for (var i : uint = 0; i < mesh.subMeshes.length; ++i)
 				drawLines(lineColor, lineThickness, bitmapData, mesh.subMeshes[i].subGeometry);

@@ -7,7 +7,7 @@ package away3d.textures
 	import flash.geom.Matrix;
 	import flash.media.Camera;
 	import flash.media.Video;
-	
+#if false // ASX# unsupported
 	public class WebcamTexture extends BitmapTexture
 	{
 		private var _materialSize : uint;
@@ -176,4 +176,5 @@ package away3d.textures
 			return size;
 		}
 	}
+#endif
 }

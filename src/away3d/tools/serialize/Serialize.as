@@ -106,7 +106,8 @@ package away3d.tools.serialize
 			serializer.beginObject(classNameFromInstance(material), material.name);
 
 			if (material.lightPicker is StaticLightPicker) {
-				serializer.writeString("lights", String(StaticLightPicker(material.lightPicker).lights));
+				throw new System.NotImplementedException("ASX#1033");
+				// serializer.writeString("lights", String(StaticLightPicker(material.lightPicker).lights));
 			}
 			serializer.writeBoolean("mipmap", material.mipmap);
 			serializer.writeBoolean("smooth", material.smooth);

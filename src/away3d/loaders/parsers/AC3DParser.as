@@ -29,7 +29,7 @@ package away3d.loaders.parsers
 	public class AC3DParser extends ParserBase
 	{
 		private const LIMIT:uint = 65535;
-		private const CR:String = String.fromCharCode(10);
+		private static var CR:String = String.fromCharCode(10); // ASX#1011
 		
 		private var _textData:String;
 		private var _startedParsing : Boolean;
@@ -163,7 +163,7 @@ package away3d.loaders.parsers
 				
 				_charIndex = _textData.indexOf(CR, _oldIndex);
 				
-				if(_charIndex == -1)
+				if(int(_charIndex) == -1)
 					_charIndex = _stringLen;
 				
 				line = _textData.substring(_oldIndex, _charIndex);
@@ -174,7 +174,7 @@ package away3d.loaders.parsers
 				if(_charIndex != _stringLen)
 					_oldIndex = _charIndex+1;
 				
-				switch (_trunk[0])
+				switch (String(_trunk[0]))
 				{
 					case "MATERIAL":
 						generateMaterial(line);
@@ -223,7 +223,7 @@ package away3d.loaders.parsers
 							nextObject = _textData.indexOf("OBJECT", _oldIndex);
 							nextSurface = _textData.indexOf("numsurf", _oldIndex);
 
-							if(nextSurface == -1 || nextSurface> _stringLen){
+							if(int(nextSurface) == -1 || int(nextSurface) > _stringLen){
 								//we're done here, we do not need the following stuff anyway
 								_charIndex = _oldIndex = _stringLen;
 								break;
@@ -344,6 +344,7 @@ package away3d.loaders.parsers
 								_uvs.push(parseInt(_trunk[0]), new UV(parseFloat(_trunk[1]), 1-parseFloat(_trunk[2])));
 							}
 						}
+					break;
 				}
 				
 			}
@@ -391,8 +392,8 @@ package away3d.loaders.parsers
 			var j:uint;
 			var dic:Dictionary = new Dictionary();
 			var ref:String;
-			
-			for (var i:uint = 0;i<_uvs.length;i+=6){
+			var i:uint;
+			for (i = 0;i<_uvs.length;i+=6){
 				 
 				if(indices.length+3 > LIMIT ){
 					vertices = new Vector.<Number>();
@@ -498,7 +499,7 @@ package away3d.loaders.parsers
 				case "f":
 					return 15;
 				default:
-					return new Number(char);
+					return Number(char);
 			}    
 		}
 
@@ -521,7 +522,7 @@ package away3d.loaders.parsers
 					continue;
 				}
 				
-				switch(trunk[i]){
+				switch(String(trunk[i])){
 					case "rgb":
 						var r:uint = (parseFloat(trunk[i+1])*255);
 						var g:uint = (parseFloat(trunk[i+2])*255);
@@ -562,7 +563,8 @@ package away3d.loaders.parsers
 		
 		private function cleanUpBuffers():void
 		{
-			for(var i:uint = 0;i<_vertices.length;++i)
+			var i:uint;
+			for(i = 0;i<_vertices.length;++i)
 				_vertices[i] = null;
 			
 			for(i = 0;i<_uvs.length;++i)

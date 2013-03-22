@@ -10,7 +10,6 @@ package away3d.loaders.parsers
 	import away3d.arcane;
 	import away3d.containers.ObjectContainer3D;
 	import away3d.core.base.CompactSubGeometry;
-	import away3d.core.base.CompactSubGeometry;
 	import away3d.core.base.Geometry;
 	import away3d.core.base.SkinnedSubGeometry;
 	import away3d.entities.Mesh;
@@ -148,6 +147,8 @@ package away3d.loaders.parsers
 		{
 			if (!_defaultBitmapMaterial) _defaultBitmapMaterial = buildDefaultMaterial();
 
+			throw new System.NotImplementedException("ASX#1006");
+#if false
 			switch (_parseState) {
 				case DAEParserState.LOAD_XML:
 					try {
@@ -223,6 +224,7 @@ package away3d.loaders.parsers
 			}
 
 			return MORE_TO_PARSE;
+#endif
 		}
 
 
@@ -263,7 +265,7 @@ package away3d.loaders.parsers
 			var skinned_sub_geom : SkinnedSubGeometry;
 			var primitive : DAEPrimitive;
 			var jointIndices : Vector.<Number>;
-			var jointWeights : Vector.<Number>
+			var jointWeights : Vector.<Number>; // ASX#1007
 			var i : uint, j : uint, k : uint, l : int;
 
 			for (i = 0; i < geometry.subGeometries.length; i++) {
@@ -367,12 +369,13 @@ package away3d.loaders.parsers
 		private function processControllerMorph(controller : DAEController, instance : DAEInstanceController) : Geometry
 		{
 			var morph : DAEMorph = controller.morph;
+			var base : Geometry; // ASX#1018
 
 			if (!base) base = processController(_libControllers[morph.source], instance);
 			if (!base) return null;
 
 			var targets : Vector.<Geometry> = new Vector.<Geometry>();
-			var base : Geometry = getGeometryByName(morph.source);
+			base = getGeometryByName(morph.source);
 			var vertexData : Vector.<Number>;
 			var sub : CompactSubGeometry;
 			var startWeight : Number = 1.0;
@@ -829,7 +832,8 @@ package away3d.loaders.parsers
 
 		public function get isAnimated() : Boolean
 		{
-			return (_doc._ns::library_animations._ns::animation.length() > 0);
+			throw new System.NotImplementedException("ASX#1006");
+//			return (_doc._ns::library_animations._ns::animation.length() > 0);
 		}
 
 	}
@@ -879,16 +883,19 @@ class DAEElement
 
 	protected function traverseChildren(element : XML, name : String = null) : void
 	{
+		throw new System.NotImplementedException("ASX#1006");
+#if false
 		var children : XMLList = name ? element.ns::[name] : element.children();
 		var count : int = children.length();
 
 		for (var i : uint = 0; i < count; i++)
 			traverseChildHandler(children[i], children[i].name().localName);
+#endif
 	}
 
 	protected function convertMatrix(matrix : Matrix3D) : void
 	{
-		var indices : Vector.<int> = Vector.<int>([2, 6, 8, 9, 11, 14]);
+		var indices : Vector.<int> = new <int>[2, 6, 8, 9, 11, 14];
 		var raw : Vector.<Number> = matrix.rawData;
 		for (var i : uint = 0; i < indices.length; i++)
 			raw[indices[i]] *= -1.0;
@@ -898,11 +905,14 @@ class DAEElement
 
 	protected function getRootElement(element : XML) : XML
 	{
+		throw new System.NotImplementedException("ASX#1006");
+		#if false
 		var tmp : XML = element;
 		while (tmp.name().localName != "COLLADA")
 			tmp = tmp.parent();
 
 		return (tmp.name().localName == "COLLADA" ? tmp : null);
+	#endif
 	}
 
 	protected function readFloatArray(element : XML) : Vector.<Number>
@@ -943,9 +953,12 @@ class DAEElement
 
 	protected function readIntAttr(element : XML, name : String, defaultValue : int = 0) : int
 	{
+		throw new System.NotImplementedException("ASX#1006");
+#if false
 		var v : int = parseInt(element.@[name], 10);
 		v = v == 0 ? defaultValue : v;
 		return v;
+#endif
 	}
 
 	protected function readText(element : XML) : String
@@ -971,9 +984,12 @@ class DAEImage extends DAEElement
 
 	public override function deserialize(element : XML) : void
 	{
+		throw new System.NotImplementedException("ASX#1006");
+#if fasle
 		super.deserialize(element);
 		init_from = readText(element.ns::init_from[0]);
 		resource = null;
+#endif
 	}
 }
 
@@ -1061,7 +1077,10 @@ class DAESource extends DAEElement
 				this.strings = readStringArray(child);
 				break;
 			case "technique_common":
+				throw new System.NotImplementedException("ASX#1006");
+#if false
 				this.accessor = new DAEAccessor(child.ns::accessor[0]);
+#endif
 		}
 	}
 }
@@ -1102,8 +1121,8 @@ class DAEVertex
 	public var uvx2 : Number;
 	public var uvy2 : Number;
 	public var numTexcoordSets : uint = 0;
-	public var index : uint = NaN;
-	public var daeIndex : uint = NaN;
+	public var index : uint = 0; // ASX#1010
+	public var daeIndex : uint = 0; // ASX#1010
 
 	public function DAEVertex(numTexcoordSets : uint)
 	{
@@ -1161,6 +1180,9 @@ class DAEPrimitive extends DAEElement
 	public override function deserialize(element : XML) : void
 	{
 		super.deserialize(element);
+
+		throw new System.NotImplementedException("ASX#1006");
+		#if false
 		this.type = element.name().localName;
 		this.material = element.@material.toString();
 		this.count = readIntAttr(element, "count", 0);
@@ -1180,6 +1202,7 @@ class DAEPrimitive extends DAEElement
 
 		if (element.ns::vcount && element.ns::vcount.length())
 			_vcount = readIntArray(element.ns::vcount[0]);
+#endif
 	}
 
 	public function create(mesh : DAEMesh) : Vector.<DAEFace>
@@ -1391,6 +1414,7 @@ class DAEMesh extends DAEElement
 			case "polylist":
 			case "polygon":
 				this.primitives.push(new DAEPrimitive(child));
+				break;
 		}
 	}
 }
@@ -1482,6 +1506,7 @@ class DAEInstanceController extends DAEInstance
 				break;
 			case "bind_material":
 				this.bind_material = new DAEBindMaterial(child);
+				break;
 		}
 	}
 }
@@ -1643,7 +1668,8 @@ class DAESurface extends DAEElement
 	{
 		super.deserialize(element);
 		this.type = element.@type.toString();
-		this.init_from = readText(element.ns::init_from[0]);
+		throw new System.NotImplementedException("ASX#1006");
+		//this.init_from = readText(element.ns::init_from[0]);
 	}
 }
 
@@ -1659,7 +1685,8 @@ class DAESampler2D extends DAEElement
 	public override function deserialize(element : XML) : void
 	{
 		super.deserialize(element);
-		this.source = readText(element.ns::source[0]);
+		throw new System.NotImplementedException("ASX#1006");
+		//this.source = readText(element.ns::source[0]);
 	}
 }
 
@@ -1696,10 +1723,12 @@ class DAEShader extends DAEElement
 			case "reflectivity":
 			case "transparency":
 			case "index_of_refraction":
-				this.props[nodeName] = parseFloat(readText(child.ns::float[0]));
+				throw new System.NotImplementedException("ASX#1006");
+			//	this.props[nodeName] = parseFloat(readText(child.ns::float[0]));
 				break;
 			default:
 				trace("[WARNING] unhandled DAEShader property: " + nodeName);
+				break;
 		}
 	}
 }
@@ -1745,6 +1774,7 @@ class DAEEffect extends DAEElement
 					break;
 				case "newparam":
 					deserializeNewParam(child);
+					break;
 			}
 		}
 	}
@@ -1768,6 +1798,7 @@ class DAEEffect extends DAEElement
 					break;
 				default:
 					trace("[WARNING] unhandled newparam: " + name);
+					break;
 			}
 		}
 	}
@@ -1787,6 +1818,7 @@ class DAEEffect extends DAEElement
 				case "blinn":
 				case "phong":
 					this.shader = new DAEShader(child);
+					break;
 			}
 		}
 	}
@@ -1849,6 +1881,7 @@ class DAETransform extends DAEElement
 			case "rotate":
 				var axis : Vector3D = new Vector3D(this.data[0], this.data[1], this.data[2]);
 				matrix.appendRotation(this.data[3], axis);
+				break;
 		}
 
 		return matrix;
@@ -1903,7 +1936,7 @@ class DAENode extends DAEElement
 
 			case "instance_controller":
 				instance = new DAEInstanceController(child);
-				this.instance_controllers.push(instance);
+				this.instance_controllers.push(DAEInstanceController(instance));
 				break;
 
 			case "instance_geometry":
@@ -1912,9 +1945,11 @@ class DAENode extends DAEElement
 
 			case "instance_node":
 				instance = new DAEInstanceNode(child);
-				instances = _root.ns::library_nodes.ns::node.(@id == instance.url);
-				if (instances.length())
-					this.nodes.push(new DAENode(this.parser, instances[0], this));
+				throw new System.NotImplementedException("ASX#1006");
+
+			//	instances = _root.ns::library_nodes.ns::node.(@id == instance.url);
+			//	if (instances.length())
+			//		this.nodes.push(new DAENode(this.parser, instances[0], this));
 				break;
 
 			case "matrix":
@@ -2008,6 +2043,7 @@ class DAENode extends DAEElement
 										break;
 									default:
 										trace("unhandled rotate dot access " + channel.dotAccessor);
+										break;
 								}
 
 							} else {
@@ -2033,6 +2069,7 @@ class DAENode extends DAEElement
 										break;
 									default:
 										trace("unhandled scale dot access " + channel.dotAccessor);
+										break;
 								}
 
 							} else {
@@ -2058,6 +2095,7 @@ class DAENode extends DAEElement
 										break;
 									default:
 										trace("unhandled translate dot access " + channel.dotAccessor);
+										break;
 								}
 
 							} else {
@@ -2193,6 +2231,9 @@ class DAEMorph extends DAEEffect
 		var sources : Object = {};
 		var source : DAESource;
 		var input : DAEInput;
+		throw new System.NotImplementedException("ASX#1006");
+
+#if false
 		var list : XMLList = element.ns::source;
 
 		if (element.ns::targets && element.ns::targets.length() > 0) {
@@ -2213,6 +2254,7 @@ class DAEMorph extends DAEEffect
 				}
 			}
 		}
+#endif
 	}
 }
 
@@ -2251,7 +2293,8 @@ class DAESkin extends DAEElement
 		var children : XMLList = element.children();
 		var i : uint;
 		var sources : Object = {};
-
+		throw new System.NotImplementedException("ASX#1006");
+#if false
 		for (i = 0; i < element.ns::source.length(); i++) {
 			var source : DAESource = new DAESource(element.ns::source[i]);
 			sources[source.id] = source;
@@ -2277,6 +2320,7 @@ class DAESkin extends DAEElement
 					break;
 			}
 		}
+		#endif
 	}
 
 	public function getJointIndex(joint : String) : int
@@ -2299,6 +2343,8 @@ class DAESkin extends DAEElement
 
 	private function parseJoints(element : XML, sources : Object) : void
 	{
+		throw new System.NotImplementedException("ASX#1006");
+#if false
 		var list : XMLList = element.ns::input;
 		var input : DAEInput;
 		var source : DAESource;
@@ -2324,10 +2370,13 @@ class DAESkin extends DAEElement
 					}
 			}
 		}
+#endif
 	}
 
 	private function parseVertexWeights(element : XML, sources : Object) : void
 	{
+		throw new System.NotImplementedException("ASX#1006");
+#if false
 		var list : XMLList = element.ns::input;
 		var input : DAEInput;
 		var inputs : Vector.<DAEInput> = new Vector.<DAEInput>();
@@ -2377,6 +2426,7 @@ class DAESkin extends DAEElement
 
 			this.weights.push(vertex_weights);
 		}
+#endif
 	}
 }
 
@@ -2395,7 +2445,8 @@ class DAEController extends DAEElement
 		super.deserialize(element);
 		this.skin = null;
 		this.morph = null;
-
+		throw new System.NotImplementedException("ASX#1006");
+#if false
 		if (element.ns::skin && element.ns::skin.length()) {
 			this.skin = new DAESkin(element.ns::skin[0]);
 		} else if (element.ns::morph && element.ns::morph.length()) {
@@ -2403,6 +2454,7 @@ class DAEController extends DAEElement
 		} else {
 			throw new Error("DAEController: could not find a <skin> or <morph> element");
 		}
+#endif
 	}
 }
 
@@ -2424,12 +2476,15 @@ class DAESampler extends DAEElement
 	public override function deserialize(element : XML) : void
 	{
 		super.deserialize(element);
+		throw new System.NotImplementedException("ASX#1006");
+#if false
 		var list : XMLList = element.ns::input;
 		var i : uint;
 		_inputs = new Vector.<DAEInput>();
 
 		for (i = 0; i < list.length(); i++)
 			_inputs.push(new DAEInput(list[i]));
+#endif
 	}
 
 	public function create(sources : Object) : void
@@ -2461,6 +2516,7 @@ class DAESampler extends DAEElement
 					break;
 				case "INTEROLATION":
 					this.interpolation = source.strings;
+					break;
 			}
 		}
 	}
@@ -2607,6 +2663,7 @@ class DAEAnimation extends DAEElement
 				break;
 			case "channel":
 				this.channels.push(new DAEChannel(child));
+				break;
 		}
 	}
 

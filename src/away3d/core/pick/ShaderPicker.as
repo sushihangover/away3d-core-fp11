@@ -228,8 +228,8 @@ package away3d.core.pick
 							"mov op, vt0	\n";
 			fragmentCode =  "mov oc, fc0";		// write identifier
 
-			_objectProgram3D.upload(	new AGALMiniAssembler().assemble(Context3DProgramType.VERTEX, vertexCode),
-										new AGALMiniAssembler().assemble(Context3DProgramType.FRAGMENT, fragmentCode));
+			_objectProgram3D.upload(	(new AGALMiniAssembler()).assemble(Context3DProgramType.VERTEX, vertexCode),
+										(new AGALMiniAssembler()).assemble(Context3DProgramType.FRAGMENT, fragmentCode));
 		}
 
 		/**
@@ -253,8 +253,8 @@ package away3d.core.pick
 							"mov op, vt0	\n";
 			fragmentCode =  "mov oc, v0";		// write identifier
 
-			_triangleProgram3D.upload(	new AGALMiniAssembler().assemble(Context3DProgramType.VERTEX, vertexCode),
-										new AGALMiniAssembler().assemble(Context3DProgramType.FRAGMENT, fragmentCode));
+			_triangleProgram3D.upload(	(new AGALMiniAssembler()).assemble(Context3DProgramType.VERTEX, vertexCode),
+										(new AGALMiniAssembler()).assemble(Context3DProgramType.FRAGMENT, fragmentCode));
 		}
 
 		/**

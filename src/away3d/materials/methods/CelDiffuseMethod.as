@@ -27,7 +27,9 @@ package away3d.materials.methods
 		 */
 		public function CelDiffuseMethod(levels : uint = 3, baseDiffuseMethod : BasicDiffuseMethod = null)
 		{
-			super(clampDiffuse, baseDiffuseMethod);
+			throw new System.NotImplementedException("ASX#1017");
+			super(null, baseDiffuseMethod);
+			//			super(clampDiffuse, baseDiffuseMethod);
 
 			_levels = levels;
 		}

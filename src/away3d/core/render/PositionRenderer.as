@@ -88,8 +88,8 @@ package away3d.core.render
 							"mul v0, vt0, vt1.x	\n";
 			fragmentCode = "mov oc, v0\n";
 
-			_program3D.upload(	new AGALMiniAssembler(Debug.active).assemble(Context3DProgramType.VERTEX, vertexCode),
-								new AGALMiniAssembler(Debug.active).assemble(Context3DProgramType.FRAGMENT, fragmentCode));
+			_program3D.upload(	(new AGALMiniAssembler(Debug.active)).assemble(Context3DProgramType.VERTEX, vertexCode),
+								(new AGALMiniAssembler(Debug.active)).assemble(Context3DProgramType.FRAGMENT, fragmentCode));
 		}
 	}
 }

@@ -127,6 +127,11 @@
     		
     		_back = val;
     	}
+
+		public indexer this (index:String):MaterialBase {
+			get {throw new System.NotImplementedException(); }
+			set {throw new System.NotImplementedException(); }
+		}
     	 
 	}
 }

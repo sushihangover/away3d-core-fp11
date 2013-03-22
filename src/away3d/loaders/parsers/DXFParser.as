@@ -29,7 +29,7 @@ package away3d.loaders.parsers
 	{
 		private const LIMIT:uint = 65535;
 		private const SETLIMIT:uint = 17872;
-		private const CR:String = String.fromCharCode(10);
+		private static var CR:String = String.fromCharCode(10); // ASX#1011
 		
 		private const FACE:String = "3DFACE";
 		private const LINE:String = "LINE";
@@ -115,7 +115,9 @@ package away3d.loaders.parsers
 		protected override function proceedParsing() : Boolean
 		{
 			var line:String;
-			
+			var _vSet:uint; // ASX#1018
+			var _charIndex:uint; // ASX#1018
+
 			if(!_startedParsing) {
 				_textData = getTextData();
 				 
@@ -137,7 +139,7 @@ package away3d.loaders.parsers
 				_textData = _textData.replace(re, "");
 				_textData = _textData.replace(/\\[\r\n]+\s*/gm, '');
 				
-				var _charIndex:uint = 0;
+				_charIndex = 0;
 				_stringLen = _textData.length;
 				_oldIndex = 0;
 				_segCount = 0;
@@ -150,7 +152,6 @@ package away3d.loaders.parsers
 			var tag:String;
 			var isBlock:Boolean;
 			var isTag:Boolean;
-			var _vSet:uint;
 			var lineVal:Number;
 			
 			while(_charIndex<_stringLen && (hasTime() || isBlock)){
@@ -247,7 +248,7 @@ package away3d.loaders.parsers
 										//ignoring visibility tag
 										 default:
 											if( isNaN(lineVal) && tag == "8" && _vSet == 0) _meshName = line;
-											 
+											break;
 									}
 									
 						
@@ -285,7 +286,7 @@ package away3d.loaders.parsers
 										
 									case "62":
 										_itemColor = getDXFColor(lineVal);
-										
+										break;
 								}
 								
 							
@@ -527,7 +528,7 @@ package away3d.loaders.parsers
 			line.startColor = lineColor;
 			line.endColor = lineColor;
 			
-			_itemColor = NaN;
+			_itemColor = 0; // ASX#1010
 			
 			_segmentSet.addSegment(line);
 		}
@@ -539,7 +540,7 @@ package away3d.loaders.parsers
 
 			 finalizeAsset(_activeMesh);
 			 
-			 _itemColor = NaN;
+			 _itemColor = 0; // ASX#1010
 			_activeMesh = null;
 		}
 			 

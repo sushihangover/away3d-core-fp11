@@ -19,6 +19,16 @@
 			setSize(width, height);
 		}
 
+		public function get width():int
+		{
+			return super.width;
+		}
+
+		public function get height():int
+		{
+			return super.height;
+		}
+
 		public function set width(value : int) : void
 		{
 			if (value == _width) return;

@@ -138,6 +138,7 @@ package away3d.tools.helpers
 								}
 							}
 						}
+						break;
 				}
 			}
 		}

@@ -42,7 +42,7 @@ package away3d.loaders.parsers
 		private var _meshes:Vector.<Mesh>;
 		private var _lastMtlID:String;
 		private var _objectIndex:uint;
-		private var _realIndices:Array;
+		private var _realIndices:Vector.<int>;
 		private var _vertexIndex:uint;
 		private var _vertices:Vector.<Vertex>;
 		private var _vertexNormals:Vector.<Vertex>;
@@ -138,11 +138,12 @@ package away3d.loaders.parsers
 		*/
 		override arcane function resolveDependencyFailure(resourceDependency:ResourceDependency):void
 		{
+			var lm:LoadedMaterial; // ASX#1018
 			if(resourceDependency.id == "mtl"){
 				_mtlLib = false;
 				_mtlLibLoaded = false;
 			} else {
-				var lm:LoadedMaterial = new LoadedMaterial();
+				lm = new LoadedMaterial();
 				lm.materialID = resourceDependency.id;
 				_materialLoaded.push(lm);
 			}
@@ -189,7 +190,7 @@ package away3d.loaders.parsers
 			while(_charIndex<_stringLength && hasTime()){
 				_charIndex = _textData.indexOf(creturn, _oldIndex);
 				
-				if(_charIndex == -1)
+				if(int(_charIndex) == -1)
 					_charIndex = _stringLength;
 				
 				line = _textData.substring(_oldIndex, _charIndex);
@@ -225,7 +226,7 @@ package away3d.loaders.parsers
 		*/
 		private function parseLine(trunk:Array):void
 		{
-			switch (trunk[0]) {
+			switch (String(trunk[0])) {
 				case "mtllib":
 					_mtlLib = true;
 					_mtlLibLoaded = false;
@@ -256,6 +257,7 @@ package away3d.loaders.parsers
 					break;
 				case "f":
 					parseFace(trunk);
+					break;
 			}
 		}
 		
@@ -342,11 +344,12 @@ package away3d.loaders.parsers
 			var normals:Vector.<Number> = new Vector.<Number>();
 			var indices:Vector.<uint> = new Vector.<uint>();
 			 
-			_realIndices = [];
+			_realIndices = new Vector.<int>();
 			_vertexIndex = 0;
 
 			var j:uint;
-			for (var i:uint = 0; i < numFaces; ++i) {
+			var i:uint;
+			for (i = 0; i < numFaces; ++i) {
 				face = faces[i];
 				numVerts = face.indexIds.length - 1;
 				for (j = 1; j < numVerts; ++j) {
@@ -369,9 +372,9 @@ package away3d.loaders.parsers
 			var vertexNormal:Vertex;
 			var uv:UV;
 
-			if (!_realIndices[face.indexIds[vertexIndex]]) {
+			if (!_realIndices[int(face.indexIds[vertexIndex])]) {
 				index = _vertexIndex;
-				_realIndices[face.indexIds[vertexIndex]] = ++_vertexIndex;
+				_realIndices[int(face.indexIds[vertexIndex])] = ++_vertexIndex;
 				vertex = _vertices[face.vertexIndices[vertexIndex]-1];
 				vertices.push(vertex.x * _scale, vertex.y * _scale, vertex.z * _scale);
 				
@@ -397,13 +400,14 @@ package away3d.loaders.parsers
 								break;
 							case 2:
 								uvs.push(1, 1);
+								break;
 						}
 					}
 					
 				}
 
 			} else {
-				index = _realIndices[face.indexIds[vertexIndex]] - 1;
+				index = _realIndices[int(face.indexIds[vertexIndex])] - 1;
 			}
 			
 			indices.push(index);
@@ -547,7 +551,7 @@ package away3d.loaders.parsers
 				for(j = 0;j<lines.length;++j){
 					lines[j] = lines[j].replace(/\s+$/,"");
 					
-					if(lines[j].substring(0,1) != "#" && (j == 0 || lines[j] != "") ){
+					if(String(lines[j].substring(0,1)) != "#" && (j == 0 || String(lines[j]) != "") ){
 						trunk = lines[j].split(" ");
 						
 						if(String(trunk[0]).charCodeAt(0) == 9 || String(trunk[0]).charCodeAt(0) == 32)
@@ -559,7 +563,7 @@ package away3d.loaders.parsers
 							
 						} else {
 							
-							switch (trunk[0]) {
+							switch (String(trunk[0])) {
 								
 								case "Ka":
 									if(trunk[1] && !isNaN(Number(trunk[1])) && trunk[2] && !isNaN(Number(trunk[2])) && trunk[3] && !isNaN(Number(trunk[3])))
@@ -593,6 +597,7 @@ package away3d.loaders.parsers
 								case "map_Kd":
 									mapkd = parseMapKdString(trunk);
 									mapkd = mapkd.replace(/\\/g, "/");
+									break;
 							}
 						}
 					}
@@ -656,7 +661,7 @@ package away3d.loaders.parsers
 			var breakflag:Boolean;
 			
 			for(i = 1; i < trunk.length;) {
-				switch(trunk[i]) {
+				switch(String(trunk[i])) {
 					case "-blendu" :
 					case "-blendv" :
 					case "-cc" :
@@ -682,7 +687,7 @@ package away3d.loaders.parsers
 			}
 			
 			//Reconstruct URL/filename
-			for(i; i < trunk.length; i++) {
+			for(; i < trunk.length; i++) {
 				url += trunk[i];
 				url += " ";
 			}
@@ -713,7 +718,7 @@ package away3d.loaders.parsers
 				mesh = _meshes[i];
 				decomposeID = mesh.material.name.split("~");
 				
-				if(decomposeID[0] == lm.materialID){
+				if(String(decomposeID[0]) == lm.materialID){
 					
 					if(lm.cm){
 						if(mesh.material) mesh.material = null;
@@ -753,8 +758,8 @@ package away3d.loaders.parsers
 				}
 			}
 			
-			if (lm.cm || mat)
-				finalizeAsset(lm.cm || mat);
+			if ((lm.cm!=null) || (mat!=null))  // ASX#1032
+				finalizeAsset((lm.cm!=null) ? IAsset(lm.cm) : IAsset(mat));
 		}
 		
 		private function applyMaterials():void
@@ -770,6 +775,7 @@ package away3d.loaders.parsers
 
 import away3d.materials.methods.BasicSpecularMethod;
 import away3d.textures.Texture2DBase;
+import away3d.materials.ColorMaterial; //ASX#1008
 
 class ObjectGroup
 {
@@ -798,10 +804,10 @@ class SpecularData
 	public var alpha:Number = 1;
 }
 
+
 class LoadedMaterial
 {
-	import away3d.materials.ColorMaterial;
-	
+
 	public var materialID:String;
 	public var texture:Texture2DBase;
 	public var cm:ColorMaterial;
@@ -816,4 +822,5 @@ class FaceData
 	public var uvIndices:Vector.<uint> = new Vector.<uint>();
 	public var normalIndices:Vector.<uint> = new Vector.<uint>();
 	public var indexIds:Vector.<String> = new Vector.<String>();	// used for real index lookups
+
 }

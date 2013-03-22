@@ -69,12 +69,12 @@ package away3d.tools.utils
 
 		private static function remapMesh(mesh:Mesh):void
 		{
-			var minX:Number = Infinity;
-			var minY:Number = Infinity;
-			var minZ:Number = Infinity;
-			var maxX:Number = -Infinity;
-			var maxY:Number = -Infinity;
-			var maxZ:Number = -Infinity;
+			var minX:Number = Number.POSITIVE_INFINITY;
+			var minY:Number = Number.POSITIVE_INFINITY;
+			var minZ:Number = Number.POSITIVE_INFINITY;
+			var maxX:Number = Number.NEGATIVE_INFINITY;
+			var maxY:Number = Number.NEGATIVE_INFINITY;
+			var maxZ:Number = Number.NEGATIVE_INFINITY;
 
 			Bounds.getMeshBounds(mesh);
 			minX = Bounds.minX;
@@ -220,6 +220,7 @@ package away3d.tools.utils
 							uvs[uindex] = 1-(vertices[xindex]+offsetU)/_width;
 							uvs[uindex+1] = 1- (vertices[xindex+2]+offsetV)/_height;
 						}
+						break;
 				}
 
 				sub_geom.updateUVData(uvs);
@@ -309,6 +310,7 @@ package away3d.tools.utils
 							uvs[uindex+1]  = (vertices[xindex+2]+offset)/_width;
 							uvs[uindex] = (PI + Math.atan2(vertices[xindex+1], vertices[xindex]))/DOUBLEPI;
 						}
+						break;
 
 				}
 

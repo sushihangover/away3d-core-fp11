@@ -93,10 +93,10 @@
 					index += skip;
 
 					if (i > 0 && j > 0) {
-						var a : int = (_segmentsW + 1) * j + i;
-						var b : int = (_segmentsW + 1) * j + i - 1;
-						var c : int = (_segmentsW + 1) * (j - 1) + i - 1;
-						var d : int = (_segmentsW + 1) * (j - 1) + i;
+						var a : uint = (_segmentsW + 1) * j + i;
+						var b : uint = (_segmentsW + 1) * j + i - 1;
+						var c : uint = (_segmentsW + 1) * (j - 1) + i - 1;
+						var d : uint = (_segmentsW + 1) * (j - 1) + i;
 
 						if (j == _segmentsH) {
 							indices[triIndex++] = a;

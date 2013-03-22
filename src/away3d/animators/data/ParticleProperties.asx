@@ -34,6 +34,13 @@ package away3d.animators.data
 		 * @see away3d.animators.ParticleAnimationSet
 		 */
 		public var delay:Number;
+
+		public indexer this (index:String):Object {
+			get {
+				throw new System.NotImplementedException("Workaround for lack of dynamic objects ASX#1016");
+			}
+			// set {  }
+		}
 	}
 
 }

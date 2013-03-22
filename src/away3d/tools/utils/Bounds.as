@@ -143,8 +143,8 @@ package away3d.tools.utils
 		
 		private static function reset():void
 		{
-			_minX = _minY = _minZ = Infinity;
-			_maxX = _maxY = _maxZ = -Infinity;
+			_minX = _minY = _minZ = Number.POSITIVE_INFINITY;
+			_maxX = _maxY = _maxZ = Number.NEGATIVE_INFINITY;
 			_defaultPosition.x = 0.0;
 			_defaultPosition.y = 0.0;
 			_defaultPosition.z = 0.0;

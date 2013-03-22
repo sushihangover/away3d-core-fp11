@@ -621,17 +621,20 @@ package away3d.loaders.parsers
 			var len:int;
 			var numVerts:uint = vertices.length;
 			var numFaces:uint = faces.length;
-			
+			var face:FaceVO; // ASX#1018
+			var group:uint;
+			var groups:Vector.<uint>;
+
 			// extract groups data for vertices
 			var vGroups:Vector.<Vector.<uint>> = new Vector.<Vector.<uint>>(numVerts, true);
 			for (i = 0; i < numVerts; i++) {
 				vGroups[i] = new Vector.<uint>;
 			}
 			for (i = 0; i < numFaces; i++) {
-				var face:FaceVO = FaceVO(faces[i]);
+				face = FaceVO(faces[i]);
 				for (j = 0; j < 3; j++) {
-					var groups:Vector.<uint> = vGroups[(j == 0) ? face.a : ((j == 1) ? face.b : face.c)];
-					var group:uint = face.smoothGroup;
+					groups = vGroups[(j == 0) ? face.a : ((j == 1) ? face.b : face.c)];
+					group = face.smoothGroup;
 					for (k = groups.length - 1; k >= 0; k--) {
 						if ((group & groups[k]) > 0) {
 							group |= groups[k];
@@ -644,9 +647,10 @@ package away3d.loaders.parsers
 			}
 			// clone vertices
 			var vClones:Vector.<Vector.<uint>> = new Vector.<Vector.<uint>>(numVerts, true);
+			var clones:Vector.<uint>;
 			for (i = 0; i < numVerts; i++) {
 				if ((len = vGroups[i].length) < 1) continue;
-				var clones:Vector.<uint> = new Vector.<uint>(len, true);
+				clones = new Vector.<uint>(len, true);
 				vClones[i] = clones;
 				clones[0] = i;
 				var v0:VertexVO = vertices[i];
@@ -718,7 +722,7 @@ package away3d.loaders.parsers
 		private function readNulTermString() : String
 		{
 			var chr : uint;
-			var str : String = new String();
+			var str : String = ""; // ASX#1031
 			
 			while ((chr = _byteData.readUnsignedByte()) > 0) {
 				str += String.fromCharCode(chr);

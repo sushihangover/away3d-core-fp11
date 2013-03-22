@@ -16,8 +16,8 @@
 
 	public class SegmentPass extends MaterialPassBase
 	{
-		protected static const ONE_VECTOR : Vector.<Number> = Vector.<Number>([ 1,1,1,1 ]);
-		protected static const FRONT_VECTOR : Vector.<Number> = Vector.<Number>([ 0,0,-1,0 ]);
+		protected static const ONE_VECTOR : Vector.<Number> = new <Number>[ 1,1,1,1 ];
+		protected static const FRONT_VECTOR : Vector.<Number> = new <Number>[ 0,0,-1,0 ];
 
 		private var _constants : Vector.<Number> = new Vector.<Number>(4, true);
 		private var _calcMatrix : Matrix3D;

@@ -46,10 +46,10 @@ package away3d.paths
 
 		public function getPointOnSegment(t:Number, target:Vector3D = null):Vector3D
 		{
-			const sx : Number = start.x;
-			const sy : Number = start.y;
-			const sz : Number = start.z;
-			const t2Inv : Number = 2 * (1 - t);
+			var sx : Number = start.x;
+			var sy : Number = start.y;
+			var sz : Number = start.z;
+			var t2Inv : Number = 2 * (1 - t);
 
 			target ||= new Vector3D();
 

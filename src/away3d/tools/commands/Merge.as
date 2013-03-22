@@ -24,7 +24,7 @@ package away3d.tools.commands
 		 * If keepMaterial is true, only geometry and eventual ObjectContainers3D are cleared from memory.
 		 * @param	 objectSpace		[optional] Boolean. Defines if mesh2 is merge using its objectSpace or worldspace. Default is false.
 		 */
-		function Merge(keepMaterial:Boolean = false, disposeSources:Boolean = false, objectSpace:Boolean = false ):void
+		public function Merge(keepMaterial:Boolean = false, disposeSources:Boolean = false, objectSpace:Boolean = false ):void
 		{
 			_keepMaterial = keepMaterial;
 			_disposeSources = disposeSources;

@@ -44,12 +44,12 @@ package away3d.materials.passes
 			_numUsedStreams = 2;
 			_numUsedVertexConstants = 7;
 			_polyOffset = new <Number>[polyOffset, 0, 0, 0];
-			_enc = Vector.<Number>([	1.0, 255.0, 65025.0, 16581375.0,
+			_enc = new <Number>[	1.0, 255.0, 65025.0, 16581375.0,
 										1.0 / 255.0,1.0 / 255.0,1.0 / 255.0,0.0
-									]);
+									];
 			
-			_animatableAttributes = Vector.<String>(["va0", "va1"]);
-			_animationTargetRegisters = Vector.<String>(["vt0", "vt1"]);
+			_animatableAttributes = new <String>["va0", "va1"];
+			_animationTargetRegisters = new <String>["vt0", "vt1"];
 		}
 
 		/**

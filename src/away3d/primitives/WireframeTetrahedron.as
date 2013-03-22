@@ -82,7 +82,7 @@ package away3d.primitives {
       var bv2:Vector3D;
       var bv3:Vector3D;
       var top:Vector3D;
-      const hw:Number = _width * 0.5;
+      var hw:Number = _width * 0.5;
 
       switch (_orientation) {
         case ORIENTATION_XY:

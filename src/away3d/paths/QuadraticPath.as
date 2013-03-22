@@ -153,12 +153,14 @@ package away3d.paths
 			var Y:Number;
 			var Z:Number;
 			var midPoint:Vector3D;
+			var currentPoint:Vector3D; // ASX#1018
+			var nextPoint:Vector3D;
 
 			// Find the mid points and inject them into the array.
 			for(i = 0; i < points.length - 1; i++)
 			{
-				var currentPoint:Vector3D = points[i];
-				var nextPoint:Vector3D = points[i+1];
+				currentPoint = points[i];
+				nextPoint = points[i+1];
 
 				X = (currentPoint.x + nextPoint.x)/2;
 				Y = (currentPoint.y + nextPoint.y)/2;

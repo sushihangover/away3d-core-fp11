@@ -191,7 +191,8 @@ package away3d.primitives
 
 					// add vertex with same position, but with inverted normal & tangent
 					if (_doubleSided) {
-						for (var i : int = 0; i < 3; ++i) {
+						var i : int;
+						for (i = 0; i < 3; ++i) {
 							data[index] = data[index-stride];
 							++index;
 						}
@@ -201,7 +202,7 @@ package away3d.primitives
 						}
 						for (i = 0; i < 3; ++i) {
 							data[index] = -data[index-stride];
-							++index
+							++index;
 						}
 						index +=skip;
 					}
@@ -210,20 +211,20 @@ package away3d.primitives
 						base = xi + yi*tw;
 						var mult : int = _doubleSided? 2 : 1;
 
-						indices[numIndices++] = base*mult;
-						indices[numIndices++] = (base + tw)*mult;
-						indices[numIndices++] = (base + tw + 1)*mult;
-						indices[numIndices++] = base*mult;
-						indices[numIndices++] = (base + tw + 1)*mult;
-						indices[numIndices++] = (base + 1)*mult;
+						indices[numIndices++] = uint(base*mult);
+						indices[numIndices++] = uint((base + tw)*mult);
+						indices[numIndices++] = uint((base + tw + 1)*mult);
+						indices[numIndices++] = uint(base*mult);
+						indices[numIndices++] = uint((base + tw + 1)*mult);
+						indices[numIndices++] = uint((base + 1)*mult);
 
 						if(_doubleSided) {
-							indices[numIndices++] = (base + tw + 1)*mult + 1;
-							indices[numIndices++] = (base + tw)*mult + 1;
-							indices[numIndices++] = base*mult + 1;
-							indices[numIndices++] = (base + 1)*mult + 1;
-							indices[numIndices++] = (base + tw + 1)*mult + 1;
-							indices[numIndices++] = base*mult + 1;
+							indices[numIndices++] = uint((base + tw + 1)*mult + 1);
+							indices[numIndices++] = uint((base + tw)*mult + 1);
+							indices[numIndices++] = uint(base*mult + 1);
+							indices[numIndices++] = uint((base + 1)*mult + 1);
+							indices[numIndices++] = uint((base + tw + 1)*mult + 1);
+							indices[numIndices++] = uint(base*mult + 1);
 						}
 					}
 				}

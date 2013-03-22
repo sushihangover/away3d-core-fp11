@@ -30,7 +30,7 @@
 			var rad:Number = 2.4;
 			var offset:Number = length*.025;
 			var vectors:Vector.<Vector.<Vector3D>> = new Vector.<Vector.<Vector3D>>();
-			var colors:Vector.<uint> = Vector.<uint>([0xFF0000, 0x00FF00, 0x0000FF]);
+			var colors:Vector.<uint> = new <uint>[0xFF0000, 0x00FF00, 0x0000FF];
 			
 			var matX:ColorMaterial = new ColorMaterial(0xFF0000);
 			var matY:ColorMaterial = new ColorMaterial(0x00FF00);
@@ -43,18 +43,18 @@
 			profileX[0] = new Vector3D(length, 0 , 0);
 			profileX[1] = new Vector3D(base, 0, offset);
 			profileX[2] = new Vector3D(base, 0, -rad);
-			vectors[0] = Vector.<Vector3D>([new Vector3D(0, 0, 0), new Vector3D(base, 0, 0) ]);
+			vectors[0] = new <Vector3D>[new Vector3D(0, 0, 0), new Vector3D(base, 0, 0) ];
 			var arrowX:LatheExtrude = new LatheExtrude(matX, profileX, LatheExtrude.X_AXIS, 1, 10);
 			
 			var profileY:Vector.<Vector3D> = new Vector.<Vector3D>();
 			profileY[0] = new Vector3D(0, length, 0);
 			profileY[1] = new Vector3D(offset, base, 0);
 			profileY[2] = new Vector3D(-rad, base, 0);
-			vectors[1] = Vector.<Vector3D>([new Vector3D(0, 0, 0), new Vector3D(0, base, 0) ]);
+			vectors[1] = new <Vector3D>[new Vector3D(0, 0, 0), new Vector3D(0, base, 0) ];
 			var arrowY:LatheExtrude = new LatheExtrude(matY, profileY, LatheExtrude.Y_AXIS, 1, 10);
 			 
 			var profileZ:Vector.<Vector3D> = new Vector.<Vector3D>();
-			vectors[2] = Vector.<Vector3D>([new Vector3D( 0, 0, 0), new Vector3D( 0, 0, base) ]);
+			vectors[2] = new <Vector3D>[new Vector3D( 0, 0, 0), new Vector3D( 0, 0, base) ];
 			profileZ[0] = new Vector3D( 0, rad, base);
 			profileZ[1] = new Vector3D( 0, offset, base);
 			profileZ[2] = new Vector3D( 0 , 0, length);
@@ -68,7 +68,7 @@
 			profileO[4] = new Vector3D( 0, -rad, 0);
 			var origin:LatheExtrude = new LatheExtrude(matOrigin, profileO, LatheExtrude.Y_AXIS, 1, 10);
 			
-			merge.applyToMeshes(this, Vector.<Mesh>([arrowX, arrowY, arrowZ, origin]));
+			merge.applyToMeshes(this, new <Mesh>[arrowX, arrowY, arrowZ, origin]);
 			
 			if(showLetters){
 				
@@ -81,25 +81,25 @@
 				var cross:Number = length+(scl3) + (  ((length+scl4) - (length+scl3)) /3  * 2);
 				
 				//x
-				vectors[3] = Vector.<Vector3D>([	new Vector3D(length+scl2, scl1 , 0),
+				vectors[3] = new <Vector3D>[	new Vector3D(length+scl2, scl1 , 0),
 												 					new Vector3D(length+scl3, -scl1 , 0),
 																	new Vector3D(length+scl3, scl1 , 0),
-																	new Vector3D(length+scl2, -scl1 , 0)] );
+																	new Vector3D(length+scl2, -scl1 , 0)];
 				//y
-				vectors[4] = Vector.<Vector3D>([	new Vector3D(-scaleW*1.2, length+scl4,0),
+				vectors[4] = new <Vector3D>[	new Vector3D(-scaleW*1.2, length+scl4,0),
 																	new Vector3D( 0, cross, 0),
 																	new Vector3D(scaleW*1.2, length+scl4,0),
 																	new Vector3D( 0, cross, 0),
 																	new Vector3D( 0, cross, 0),
-																	new Vector3D( 0, length+scl3, 0)] );
+																	new Vector3D( 0, length+scl3, 0)];
 				 
 				//z
-				vectors[5] = Vector.<Vector3D>([	new Vector3D(0, scl1, length+scl2),
+				vectors[5] = new <Vector3D>[	new Vector3D(0, scl1, length+scl2),
 																	new Vector3D(0, scl1, length+scl3),
 																	new Vector3D(0, -scl1, length+scl2),
 																	new Vector3D(0, -scl1, length+scl3),
 																	new Vector3D(0, -scl1, length+scl3),
-																	new Vector3D(0, scl1, length+scl2)] );
+																	new Vector3D(0, scl1, length+scl2)];
 				
 				colors.push(0xFF0000, 0x00FF00, 0x0000FF);
 			}

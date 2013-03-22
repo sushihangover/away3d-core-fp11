@@ -1,11 +1,10 @@
 package away3d.materials.methods
 {
 	import away3d.arcane;
+	use namespace arcane; // ASX#1001
 
 	public class MethodVOSet
 	{
-		use namespace arcane;
-
 		public var method : EffectMethodBase;
 		public var data : MethodVO;
 

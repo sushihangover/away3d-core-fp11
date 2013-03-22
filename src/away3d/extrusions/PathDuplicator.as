@@ -158,7 +158,7 @@ package away3d.extrusions {
 					}
 				}
 				if(_clones){
-					for (i ; i <_clones.length; ++i) {
+					for ( ; i <_clones.length; ++i) { // ASX#1034
 						_clones[i] = null;
 					}
 				}

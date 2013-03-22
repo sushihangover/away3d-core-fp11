@@ -222,6 +222,6 @@ package away3d.library
 }
 
 // singleton enforcer
-class AssetLibrarySingletonEnforcer
+public class AssetLibrarySingletonEnforcer // ASX#1009
 {
 }

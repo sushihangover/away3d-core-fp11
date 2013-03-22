@@ -181,10 +181,10 @@ package away3d.extrusions
 		
 		private function initHolders():void
 		{	
-			_axis0Min = Infinity;
-			_axis0Max = -Infinity;
-			_axis1Min = Infinity;
-			_axis1Max = -Infinity;
+			_axis0Min = Number.POSITIVE_INFINITY; //ASX#1022
+			_axis0Max = Number.NEGATIVE_INFINITY;
+			_axis1Min = Number.POSITIVE_INFINITY;
+			_axis1Max = Number.NEGATIVE_INFINITY;
 			 
 			_uvs = new Vector.<Number>();
 			_vertices = new Vector.<Number>();
@@ -357,7 +357,7 @@ package away3d.extrusions
  
 			indices.push(ind0, ind1, ind2); 
 		}
-		
+
 		private function generate():void
 		{	
 			getVectorsBounds();
@@ -682,6 +682,7 @@ package away3d.extrusions
 						if(v.y < _axis1Min) _axis1Min = v.y;
 						if(v.y > _axis1Max) _axis1Max = v.y;
 					}
+					break; // ASX#1000
 					
 			}
 		}

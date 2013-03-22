@@ -41,7 +41,7 @@ package away3d.animators.states
 			return _nextPose;
 		}
 		
-		function SkeletonClipState(animator:IAnimator, skeletonClipNode:SkeletonClipNode)
+		public function SkeletonClipState(animator:IAnimator, skeletonClipNode:SkeletonClipNode)
 		{
 			super(animator, skeletonClipNode);
 			

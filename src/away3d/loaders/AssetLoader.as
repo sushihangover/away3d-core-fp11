@@ -204,7 +204,7 @@ package away3d.loaders
 		 * @param ns An optional namespace string under which the file is to be loaded, allowing the differentiation of two resources with identical assets
 		 * @param parser An optional parser object for translating the loaded data into a usable resource. If not provided, AssetLoader will attempt to auto-detect the file type.
 		 */
-		public function loadData(data : *, id : String, context : AssetLoaderContext = null, ns : String = null, parser : ParserBase = null) : AssetLoaderToken
+		public function loadData(data : Object, id : String, context : AssetLoaderContext = null, ns : String = null, parser : ParserBase = null) : AssetLoaderToken
 		{
 			if (!_token) {
 				_token = new AssetLoaderToken(this);
@@ -212,8 +212,9 @@ package away3d.loaders
 				_uri = id;
 				_context = context;
 				_namespace = ns;
-				
-				_baseDependency = new ResourceDependency(id, null, data, null);
+
+				throw new System.NotSupportedException("ASX#1035");
+				// _baseDependency = new ResourceDependency(id, null, data, null);
 				retrieveDependency(_baseDependency, parser);
 				
 				return _token;
@@ -327,7 +328,7 @@ package away3d.loaders
 			
 			// Absolute URL? Check if starts with slash or a URL
 			// scheme definition (e.g. ftp://, http://, file://)
-			scheme_re = new RegExp(/^[a-zA-Z]{3,4}:\/\//);
+			scheme_re = /^[a-zA-Z]{3,4}:\x2F\x2F/; // ASX#1004
 			if (url.charAt(0) == '/') {
 				if (_context && _context.overrideAbsolutePaths) {
 					return joinUrl(_context.dependencyBaseUrl, url);
@@ -341,9 +342,10 @@ package away3d.loaders
 				// and replace with the dependencyBaseUrl defined by user.
 				if (_context && _context.overrideFullURLs) {
 					var noscheme_url : String;
-					
-					noscheme_url = url.replace(scheme_re);
-					return joinUrl(_context.dependencyBaseUrl, noscheme_url);
+
+					throw new System.NotImplementedException("ASX#1030");
+					//noscheme_url = url.replace(scheme_re);
+					//return joinUrl(_context.dependencyBaseUrl, noscheme_url);
 				}
 			}
 			

@@ -182,7 +182,8 @@ package away3d.extrusions
 		private function generate():void
 		{	
 			var uvlength:int = (_closeShape)? _profiles.length : _profiles.length-1;
-			for(var i:int = 0;i<_profiles.length-1;++i){
+			var i:int;
+			for(i = 0;i<_profiles.length-1;++i){
 				_tmpVectors = new Vector.<Number>();
 				extrude(_profiles[i], _profiles[i+1], (1/uvlength)*i, uvlength);
 			}

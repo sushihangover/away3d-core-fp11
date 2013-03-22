@@ -59,7 +59,7 @@ package away3d.animators.nodes
 			
 			var i:uint = _numFrames - 1;
 			var p1 : Vector3D, p2 : Vector3D, delta : Vector3D;
-			while (i--) {
+			while (i-- != 0) { // ASX1019
 				_totalDuration += _durations[i];
 				p1 = _translations[i];
 				p2 = _translations[i+1];

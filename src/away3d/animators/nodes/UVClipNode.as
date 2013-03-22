@@ -50,7 +50,7 @@ package away3d.animators.nodes
 			super.updateStitch();
 			
 			var i:uint = _numFrames - 1;
-			while (i--) {
+			while (i-- !=0) { //ASX#1019
 				_totalDuration += _durations[i];
 			}
 			

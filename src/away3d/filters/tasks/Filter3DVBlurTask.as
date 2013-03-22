@@ -23,7 +23,7 @@ package away3d.filters.tasks
 		{
 			super();
 			_amount = amount;
-			_data = Vector.<Number>([0, 0, 0, 1]);
+			_data = new <Number>[0, 0, 0, 1];
 			this.stepSize = stepSize;
 		}
 

@@ -129,11 +129,11 @@ package away3d.filters.tasks
 		
 		protected function updateConstants():void
 		{
-			_rgbData = Vector.<Number>([
+			_rgbData = new <Number>[
 				0.3,            0.59,           0.11,       0,
 				1-_saturation,  _saturation,    0,          0,
 				r,              g,              b,          0
-			]);
+			];
 		}
 	}
 }

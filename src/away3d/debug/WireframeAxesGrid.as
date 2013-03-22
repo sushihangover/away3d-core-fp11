@@ -95,7 +95,8 @@
 						v1.y = 0;
 						v1.z = -bound;
 						addSegment(new LineSegment(v0, v1, color, color, thickness ));
-				}
+						break; // ASX#1000
+ 				}
 
 				inc += step;
 			}

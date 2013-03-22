@@ -16,7 +16,7 @@ package away3d.filters.tasks
 		{
 			super();
 			_threshold = threshold;
-			_brightPassData = Vector.<Number>([threshold, 1/(1-threshold), 0, 0]);
+			_brightPassData = new <Number>[threshold, 1/(1-threshold), 0, 0];
 		}
 
 		public function get threshold() : Number

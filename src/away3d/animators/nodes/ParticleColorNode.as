@@ -100,8 +100,9 @@ package away3d.animators.nodes
 			_endColor = endColor || new ColorTransform();
 			_cycleDuration = cycleDuration;
 			_cyclePhase = cyclePhase;
-			
-			super("ParticleColor", mode, (_usesMultiplier && _usesOffset)? 16 : 8);
+
+			// ASX#1017
+			super("ParticleColor", mode, (usesMultiplier && usesOffset)? 16 : 8);
 		}
 		
 		/**
@@ -150,6 +151,7 @@ package away3d.animators.nodes
 		 */
 		override public function getAGALFragmentCode(pass:MaterialPassBase, animationRegisterCache:AnimationRegisterCache) : String
 		{
+			var sin:ShaderRegisterElement; // ASX#1018
 			var code:String = "";
 			if (animationRegisterCache.needFragmentAnimation)
 			{
@@ -160,7 +162,7 @@ package away3d.animators.nodes
 					animationRegisterCache.setRegisterIndex(this, CYCLE_INDEX, cycleConst.index);
 					
 					animationRegisterCache.addFragmentTempUsages(temp,1);
-					var sin:ShaderRegisterElement = animationRegisterCache.getFreeFragmentSingleTemp();
+					sin = animationRegisterCache.getFreeFragmentSingleTemp();
 					animationRegisterCache.removeFragmentTempUsage(temp);
 					
 					code += "mul " + sin + "," + animationRegisterCache.fragmentTime + "," + cycleConst + ".x\n";
@@ -231,7 +233,7 @@ package away3d.animators.nodes
 			if (!endColor)
 				throw(new Error("there is no " + COLOR_END_COLORTRANSFORM + " in param!"));
 			
-			var i:uint;
+			var i:int; // ASX#1014
 			
 			if (!_usesCycle) {
 				//multiplier

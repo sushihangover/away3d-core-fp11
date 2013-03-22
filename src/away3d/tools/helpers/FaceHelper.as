@@ -42,9 +42,9 @@ package away3d.tools.helpers
 			var lengthVertices:uint = vertices.length;
 
 			if(lengthVertices+9 > LIMIT){
-				indices = Vector.<uint>([0,1,2]);
-				vertices = Vector.<Number>([v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z]);
-				uvs = Vector.<Number>([uv0.u, uv0.v, uv1.u, uv1.v, uv2.u, uv2.v]);
+				indices = new <uint>[0,1,2];
+				vertices = new <Number>[v0.x, v0.y, v0.z, v1.x, v1.y, v1.z, v2.x, v2.y, v2.z];
+				uvs = new <Number>[uv0.u, uv0.v, uv1.u, uv1.v, uv2.u, uv2.v];
 				subGeom = new SubGeometry();
 				mesh.geometry.addSubGeometry(subGeom);
 
@@ -119,11 +119,11 @@ package away3d.tools.helpers
 					sharedIndice = getUsedIndice(nvertices, vertices[oVInd], vertices[oVInd+1], vertices[oVInd+2]);
 					
 					if(sharedIndice != -1){
-						nindices[indInd++] = sharedIndice;
+						nindices[indInd++] = uint(sharedIndice);
 						continue;
 					}
 						
-					nindices[indInd++] = nvertices.length/3;
+					nindices[indInd++] = uint(nvertices.length/3);
 					
 					nvertices[vInd] = vertices[oVInd];
 					vInd++;
@@ -149,7 +149,7 @@ package away3d.tools.helpers
 						oVInd = oInd*3;
 						oUVInd = oInd*2;
 						
-						nindices[indInd++] = vInd/3;
+						nindices[indInd++] = uint(vInd/3);
 						 
 						nvertices[vInd] = vertices[oVInd];
 						vInd++;
@@ -271,7 +271,7 @@ package away3d.tools.helpers
 					uvs.push((uv1.u+uv2.u)*.5, (uv1.v+uv2.v)*.5);
 					targetIndice = indices[(indice*3)+2];
 					indices[(indice*3)+2] = targetIndice;
-					indices[vlength++] = (vertices.length-1)/3;
+					indices[vlength++] = uint((vertices.length-1)/3);
 					indices[vlength++] = indices[pointer+2];
 					indices[vlength++] = indices[pointer];
 					break;
@@ -281,9 +281,10 @@ package away3d.tools.helpers
 					uvs.push((uv2.u+uv0.u)*.5, (uv2.v+uv0.v)*.5);
 					targetIndice = indices[indice*3];
 					indices[indice*3] = targetIndice;
-					indices[vlength++] = (vertices.length-1)/3;
+					indices[vlength++] = uint((vertices.length-1)/3);
 					indices[vlength++] = indices[pointer];
 					indices[vlength++] = indices[pointer+1];
+					break;
 			}
 			
 			v0 = v1 = v2 =  null;

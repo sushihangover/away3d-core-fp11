@@ -35,13 +35,13 @@ package away3d.entities
 	{
 		// TODO: Replace with CompactSubGeometry
 		private static var _geometry : SubGeometry;
-		private static var _pickingSubMesh:SubGeometry;
+		private static var s_pickingSubMesh:SubGeometry; //ASX#1002 static collision
 
 		private var _material : MaterialBase;
 		private var _spriteMatrix : Matrix3D;
 		private var _animator : IAnimator;
 
-		private var _pickingSubMesh:SubMesh;
+		private var _pickingSubMesh:SubMesh; //ASX#1002 static collision
 		private var _pickingTransform:Matrix3D;
 		private var _camera:Camera3D;
 
@@ -58,11 +58,11 @@ package away3d.entities
 			_spriteMatrix = new Matrix3D();
 			if (!_geometry) {
 				_geometry = new SubGeometry();
-				_geometry.updateVertexData(Vector.<Number>([-.5, .5, .0, .5, .5, .0, .5, -.5, .0, -.5, -.5, .0]));
-				_geometry.updateUVData(Vector.<Number>([.0, .0, 1.0, .0, 1.0, 1.0, .0, 1.0]));
-				_geometry.updateIndexData(Vector.<uint>([0, 1, 2, 0, 2, 3]));
-				_geometry.updateVertexTangentData(Vector.<Number>([1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0]));
-				_geometry.updateVertexNormalData(Vector.<Number>([.0, .0, -1.0, .0, .0, -1.0, .0, .0, -1.0, .0, .0, -1.0]));
+				_geometry.updateVertexData(new <Number>[-.5, .5, .0, .5, .5, .0, .5, -.5, .0, -.5, -.5, .0]);
+				_geometry.updateUVData(new <Number>[.0, .0, 1.0, .0, 1.0, 1.0, .0, 1.0]);
+				_geometry.updateIndexData(new <uint>[0, 1, 2, 0, 2, 3]);
+				_geometry.updateVertexTangentData(new <Number>[1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0]);
+				_geometry.updateVertexNormalData(new <Number>[.0, .0, -1.0, .0, .0, -1.0, .0, .0, -1.0, .0, .0, -1.0]);
 			}
 		}
 

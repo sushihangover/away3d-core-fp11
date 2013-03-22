@@ -54,7 +54,7 @@
 		}
 		
 
-		private function onGeometryBoundsInvalid(event : GeometryEvent) : void
+		private function onGeometryBoundsInvalid(@event : GeometryEvent) : void
 		{
 			invalidateBounds();
 		}
@@ -246,9 +246,10 @@
 			//this is of course no proper cloning
 			//maybe use this instead?: http://blog.another-d-mention.ro/programming/how-to-clone-duplicate-an-object-in-actionscript-3/
 			clone.extra=this.extra;
-			
+
+			var i:int;
 			var len : int = _subMeshes.length;
-			for (var i : int = 0; i < len; ++i) {
+			for (i = 0; i < len; ++i) {
 				clone._subMeshes[i]._material = _subMeshes[i]._material;
 			}
 			
@@ -284,18 +285,18 @@
 		/**
 		 * Called when a SubGeometry was added to the Geometry.
 		 */
-		private function onSubGeometryAdded(event : GeometryEvent) : void
+		private function onSubGeometryAdded(@event : GeometryEvent) : void
 		{
-			addSubMesh(event.subGeometry);
+			addSubMesh(@event.subGeometry);
 		}
 
 		/**
 		 * Called when a SubGeometry was removed from the Geometry.
 		 */
-		private function onSubGeometryRemoved(event : GeometryEvent) : void
+		private function onSubGeometryRemoved(@event : GeometryEvent) : void
 		{
 			var subMesh : SubMesh;
-			var subGeom : ISubGeometry = event.subGeometry;
+			var subGeom : ISubGeometry = @event.subGeometry;
 			var len : int = _subMeshes.length;
 			var i : uint;
 			
@@ -354,6 +355,11 @@
 			}
 
 			return _pickingCollisionVO.renderable != null;
+		}
+
+		public indexer this (index:String):Number {
+			get {throw new System.NotImplementedException(); }
+			set {throw new System.NotImplementedException(); }
 		}
 	}
 }

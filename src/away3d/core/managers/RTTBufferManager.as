@@ -204,4 +204,5 @@ package away3d.core.managers
 	}
 }
 
-class SingletonEnforcer {}
+//ASX#1009
+public class SingletonEnforcer {}

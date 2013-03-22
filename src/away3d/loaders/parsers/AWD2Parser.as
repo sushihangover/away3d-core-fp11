@@ -352,9 +352,10 @@ package away3d.loaders.parsers
 			
 			// Read material numerical properties
 			// (1=color, 2=bitmap url, 10=alpha, 11=alpha_blending, 12=alpha_threshold, 13=repeat)
-			props = parseProperties({ 1:AWD_FIELD_INT32, 2:AWD_FIELD_BADDR, 
-				10:AWD_FIELD_FLOAT32, 11:AWD_FIELD_BOOL, 
-				12:AWD_FIELD_FLOAT32, 13:AWD_FIELD_BOOL });
+			throw new System.NotImplementedException(); // ASX#1005
+//			props = parseProperties({ 1:AWD_FIELD_INT32, 2:AWD_FIELD_BADDR, 
+//				10:AWD_FIELD_FLOAT32, 11:AWD_FIELD_BOOL, 
+//				12:AWD_FIELD_FLOAT32, 13:AWD_FIELD_BOOL });
 			
 			methods_parsed = 0;
 			while (methods_parsed < num_methods) {
@@ -692,13 +693,18 @@ package away3d.loaders.parsers
 			var subs_parsed : uint;
 			var props : AWDProperties;
 			var bsm : Matrix3D;
-			
+			var verts : Vector.<Number>; // ASX#1018
+			var indices : Vector.<uint>; // ASX#1018
+			var uvs : Vector.<Number>; // ASX#1018
+			var normals : Vector.<Number>; // ASX#1018
+
 			// Read name and sub count
 			name = parseVarStr();
 			num_subs = _body.readUnsignedShort();
 			
 			// Read optional properties
-			props = parseProperties({ 1:AWD_FIELD_MTX4x4 }); 
+			throw new System.NotImplementedException(); // ASX#1005
+			//props = parseProperties({ 1:AWD_FIELD_MTX4x4 }); 
 			
 			geom = new Geometry();
 			
@@ -730,9 +736,9 @@ package away3d.loaders.parsers
 					str_end = _body.position + str_len;
 					
 					var x:Number, y:Number, z:Number;
-					
+
 					if (str_type == 1) {
-						var verts : Vector.<Number> = new Vector.<Number>();
+						verts = new Vector.<Number>();
 						while (_body.position < str_end) {
 							// TODO: Respect stream field type
 							x = _body.readFloat();
@@ -745,21 +751,21 @@ package away3d.loaders.parsers
 						}
 					}
 					else if (str_type == 2) {
-						var indices : Vector.<uint> = new Vector.<uint>();
+						indices = new Vector.<uint>();
 						while (_body.position < str_end) {
 							// TODO: Respect stream field type
 							indices[idx++] = _body.readUnsignedShort();
 						}
 					}
 					else if (str_type == 3) {
-						var uvs : Vector.<Number> = new Vector.<Number>();
+						uvs = new Vector.<Number>();
 						while (_body.position < str_end) {
 							// TODO: Respect stream field type
 							uvs[idx++] = _body.readFloat();
 						}
 					}
 					else if (str_type == 4) {
-						var normals : Vector.<Number> = new Vector.<Number>();
+						normals = new Vector.<Number>();
 						while (_body.position < str_end) {
 							// TODO: Respect stream field type
 							normals[idx++] = _body.readFloat();
@@ -1046,14 +1052,16 @@ internal dynamic class AWDProperties
 {
 	public function set(key : uint, value : *) : void
 	{
-		this[key.toString()] = value;
+		throw new System.NotSupportedException("ASX#1016");
+//		this[key.toString()] = value;
 	}
 	
 	public function get(key : uint, fallback : *) : *
 	{
-		if (this.hasOwnProperty(key.toString()))
-			return this[key.toString()];
-		else return fallback;
+		throw new System.NotSupportedException("ASX#1016");
+//		if (this.hasOwnProperty(key.toString()))
+//			return this[key.toString()];
+//		else return fallback;
 	}
 }
 

@@ -278,7 +278,7 @@ package away3d.core.base
 			var weight : uint;
 
 			while (i < lenI) {
-				weight = _useFaceWeights? _faceWeights[k++] : 1;
+				weight = _useFaceWeights? uint(_faceWeights[k++]) : 1; // ASX#1023 (is this intentional?)
 				index = normalOffset + _indices[i++]*normalStride;
 				target[index++] += _faceNormals[f1]*weight;
 				target[index++] += _faceNormals[f2]*weight;
@@ -345,7 +345,7 @@ package away3d.core.base
 			i = 0;
 
 			while (i < lenI) {
-				weight = _useFaceWeights? _faceWeights[k++] : 1;
+				weight = _useFaceWeights? uint(_faceWeights[k++]) : 1; // ASX#1023 (is this intentional?)
 				index = tangentOffset + _indices[i++]*tangentStride;
 				target[index++] += _faceTangents[f1]*weight;
 				target[index++] += _faceTangents[f2]*weight;

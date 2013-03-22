@@ -9,6 +9,9 @@ package away3d.core.partition
 
 	import flash.geom.Vector3D;
 
+	//ASX#1001 use namespace inside of class
+	use namespace arcane;
+
 	/**
 	 * InvertedOctreeNode is an octree data structure not used hierarchically for culling, but for fast dynamic insertion.
 	 * The data structure is essentially a grid, but "overarching" parent container nodes for entities striding across nodes.
@@ -30,7 +33,6 @@ package away3d.core.partition
 		private var _halfExtentY : Number;
 		private var _halfExtentZ : Number;
 
-		use namespace arcane;
 
 		public function InvertedOctreeNode(minBounds : Vector3D, maxBounds : Vector3D)
 		{

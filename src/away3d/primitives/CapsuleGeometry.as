@@ -117,24 +117,24 @@ package away3d.primitives
 
 						if(j == _segmentsH)
 						{
-							indices[triIndex++] = a;
-							indices[triIndex++] = c;
-							indices[triIndex++] = d;
+							indices[triIndex++] = uint(a);
+							indices[triIndex++] = uint(c);
+							indices[triIndex++] = uint(d);
 						}
 						else if(j == 1)
 						{
-							indices[triIndex++] = a;
-							indices[triIndex++] = b;
-							indices[triIndex++] = c;
+							indices[triIndex++] = uint(a);
+							indices[triIndex++] = uint(b);
+							indices[triIndex++] = uint(c);
 						}
 						else
 						{
-							indices[triIndex++] = a;
-							indices[triIndex++] = b;
-							indices[triIndex++] = c;
-							indices[triIndex++] = a;
-							indices[triIndex++] = c;
-							indices[triIndex++] = d;
+							indices[triIndex++] = uint(a);
+							indices[triIndex++] = uint(b);
+							indices[triIndex++] = uint(c);
+							indices[triIndex++] = uint(a);
+							indices[triIndex++] = uint(c);
+							indices[triIndex++] = uint(d);
 						}
 					}
 				}

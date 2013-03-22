@@ -67,6 +67,7 @@ package away3d.core.partition
 
 		override public function acceptTraverser(traverser : PartitionTraverser) : void
 		{
+			var i:int =0; // ASX#1018
 			if (traverser.enterNode(this)) {
 				if (_debugPrimitive)
 					traverser.applyRenderable(_debugPrimitive);
@@ -79,7 +80,7 @@ package away3d.core.partition
 
 				var visibleStatics : Vector.<EntityNode> = cell.visibleStatics;
 				var numVisibles : uint = visibleStatics.length;
-				for (var i : int = 0; i < numVisibles; ++i)
+				for (i = 0; i < numVisibles; ++i)
 					visibleStatics[i].acceptTraverser(traverser);
 
 				var visibleDynamics : Vector.<InvertedOctreeNode> = cell.visibleDynamics;

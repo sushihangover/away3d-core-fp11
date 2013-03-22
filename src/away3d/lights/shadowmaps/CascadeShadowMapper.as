@@ -81,7 +81,8 @@ package away3d.lights.shadowmaps
 			_splitPlanes = new Vector.<Plane3D>(_numCascades, true);
 
 			var s : Number = 1;
-			for (var i : int = _numCascades-1; i >= 0; --i) {
+			var i :int;
+			for (i = _numCascades-1; i >= 0; --i) {
 				_splitRatios[i] = s;
 				s *= .3333;
 			}

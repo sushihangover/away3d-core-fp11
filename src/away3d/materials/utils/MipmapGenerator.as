@@ -43,7 +43,7 @@ package away3d.materials.utils
 				if (target is Texture)
 					Texture(target).uploadFromBitmapData(mipmap, i++);
 				else
-					CubeTexture(target).uploadFromBitmapData(mipmap, side, i++);
+					CubeTexture(target).uploadFromBitmapData(mipmap, uint(side), i++);
 
 				w >>= 1;
 				h >>= 1;

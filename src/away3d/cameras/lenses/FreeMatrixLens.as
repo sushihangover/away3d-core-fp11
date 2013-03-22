@@ -20,7 +20,7 @@ package away3d.cameras.lenses
 		public function FreeMatrixLens()
 		{
 			super();
-			_matrix.copyFrom(new PerspectiveLens().matrix);
+			_matrix.copyFrom((new PerspectiveLens()).matrix); // ASX#1021
 		}
 
 		override public function set near(value : Number) : void

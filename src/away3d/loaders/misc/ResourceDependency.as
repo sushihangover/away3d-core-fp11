@@ -19,7 +19,7 @@
 		private var _req : URLRequest;
 		private var _assets : Vector.<IAsset>;
 		private var _parentParser : ParserBase;
-		private var _data : *;
+		private var _data : Object;
 		private var _retrieveAsRawData : Boolean;
 		private var _suppressAssetEvents : Boolean;
 		private var _dependencies : Vector.<ResourceDependency>;
@@ -28,7 +28,7 @@
 		arcane var success : Boolean;
 		
 		
-		public function ResourceDependency(id : String, req : URLRequest, data : *, parentParser : ParserBase, retrieveAsRawData : Boolean = false, suppressAssetEvents : Boolean = false)
+		public function ResourceDependency(id : String, req : URLRequest, data : Object, parentParser : ParserBase, retrieveAsRawData : Boolean = false, suppressAssetEvents : Boolean = false)
 		{
 			_id = id;
 			_req = req;

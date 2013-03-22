@@ -29,7 +29,7 @@ package away3d.animators.states
 			
 			var i:uint = _skeletonAnimationNode.numInputs;
 			
-			while (i--)
+			while ((i--)!=0) // ASX#1019
 				_inputs[i] = animator.getAnimationState(_skeletonAnimationNode._inputs[i]) as ISkeletonAnimationState;
 		}
 		

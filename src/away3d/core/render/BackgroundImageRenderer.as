@@ -65,6 +65,7 @@ package away3d.core.render
 					break;
 				default:
 					format = "";
+					break;
 			}
 			return	"tex ft0, v0, fs0 <2d, " + format + "linear>	\n" +
 					"mov oc, ft0";
@@ -99,16 +100,16 @@ package away3d.core.render
 			_vertexBuffer = context.createVertexBuffer(4, 4);
 			_program3d = context.createProgram();
 			_indexBuffer = context.createIndexBuffer(6);
-			_indexBuffer.uploadFromVector(Vector.<uint>([2, 1, 0, 3, 2, 0]), 0, 6);
-			_program3d.upload(	new AGALMiniAssembler(Debug.active).assemble(Context3DProgramType.VERTEX, getVertexCode()),
-								new AGALMiniAssembler(Debug.active).assemble(Context3DProgramType.FRAGMENT, getFragmentCode())
+			_indexBuffer.uploadFromVector(new <uint>[2, 1, 0, 3, 2, 0], 0, 6);
+			_program3d.upload(	(new AGALMiniAssembler(Debug.active)).assemble(Context3DProgramType.VERTEX, getVertexCode()),
+								(new AGALMiniAssembler(Debug.active)).assemble(Context3DProgramType.FRAGMENT, getFragmentCode())
 			);
 
-			_vertexBuffer.uploadFromVector(Vector.<Number>([	-1, -1, 0, 1,
+			_vertexBuffer.uploadFromVector(new <Number>[	-1, -1, 0, 1,
 																1, -1, 1, 1,
 																1,  1, 1, 0,
 																-1,  1, 0, 0
-															]), 0, 4);
+															], 0, 4);
 		}
 
 		public function get texture() : Texture2DBase
