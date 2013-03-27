@@ -65,7 +65,6 @@ package away3d.core.render
 					break;
 				default:
 					format = "";
-					break;
 			}
 			return	"tex ft0, v0, fs0 <2d, " + format + "linear>	\n" +
 					"mov oc, ft0";

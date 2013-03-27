@@ -6,13 +6,15 @@
 
 	import flash.display.BitmapData;
 	import flash.display3D.textures.TextureBase;
+	import flash.display3D.textures.Texture;
+	import flash.utils.Dictionary;
 
 	use namespace arcane;
 
 	public class BitmapTexture extends Texture2DBase
 	{
-		private static var _mipMaps : Array = [];
-		private static var _mipMapUses : Array = [];
+		private static var _mipMaps : Dictionary = new Dictionary();
+		private static var _mipMapUses : Dictionary = new Dictionary();
 
 		private var _bitmapData : BitmapData;
 		private var _mipMapHolder : BitmapData;
@@ -41,12 +43,14 @@
 
 			_bitmapData = value;
 
-			setMipMap();
+			// setMipMap();
 		}
 
 		override protected function uploadContent(texture : TextureBase) : void
 		{
-			MipmapGenerator.generateMipMaps(_bitmapData, texture, _mipMapHolder, true);
+			Texture(texture).uploadFromBitmapData(_bitmapData, 0);
+
+			// MipmapGenerator.generateMipMaps(_bitmapData, texture, _mipMapHolder, true);
 		}
 
 		private function setMipMap() : void
@@ -69,8 +73,8 @@
 			}
 
 			if (!_mipMaps[newW]) {
-				_mipMaps[newW] = [];
-				_mipMapUses[newW] = [];
+				_mipMaps[newW] = new Dictionary();
+				_mipMapUses[newW] = new Dictionary();
 			}
 			if (!_mipMaps[newW][newH]) {
 				_mipMapHolder = _mipMaps[newW][newH] = new BitmapData(newW, newH, true);

@@ -298,9 +298,6 @@ package away3d.animators
 		
 		private function applyPositionDelta() : void
 		{
-			throw new System.NotImplementedException("ASX#1013"); // Mono.CSharp.InternalErrorException: FullNamedExpression `away3d.animators.AnimatorBase._activeState.positionDelta' found in resolved tree
-
-#if false
 			var delta : Vector3D = _activeState.positionDelta;
 			var dist : Number = delta.length;
 			var len : uint;
@@ -309,7 +306,6 @@ package away3d.animators
 				for (var i : uint = 0; i < len; ++i)
 					_owners[i].translateLocal(delta, dist);
 			}
-#endif
 		}
 	}
 }

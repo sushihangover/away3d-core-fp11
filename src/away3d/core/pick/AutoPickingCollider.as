@@ -48,9 +48,8 @@ package away3d.core.pick
 		 */
 		public function testSubMeshCollision(subMesh:SubMesh, pickingCollisionVO:PickingCollisionVO, shortestCollisionDistance:Number):Boolean
 		{
-			throw new System.NotImplementedException("ASX#1026");
-//			_activePickingCollider = (subMesh.numTriangles > triangleThreshold)? _pbPickingCollider : _as3PickingCollider;
-//			return _activePickingCollider.testSubMeshCollision(subMesh, pickingCollisionVO, shortestCollisionDistance);
+			_activePickingCollider = (subMesh.numTriangles > triangleThreshold)? IPickingCollider(_pbPickingCollider) : IPickingCollider(_as3PickingCollider);
+			return _activePickingCollider.testSubMeshCollision(subMesh, pickingCollisionVO, shortestCollisionDistance);
 		}
 	}
 }

@@ -143,7 +143,6 @@ package away3d.loaders.parsers
 					default:
 						if (!_reachedEOF)
 							sendUnknownKeywordError();
-						break;
 				}
 
 				if (_reachedEOF) {
@@ -375,8 +374,8 @@ package away3d.loaders.parsers
 			subGeom.updateIndexData(indices);
 			subGeom.fromVectors(vertices, uvs, null, null);
 			// cause explicit updates
-			var temp0:Vector.<Number> = subGeom.vertexNormalData;
-			var temp1:Vector.<Number> = subGeom.vertexTangentData;
+			subGeom.vertexNormalData;
+			subGeom.vertexTangentData;
 			// turn auto updates off because they may be animated and set explicitly
 			subGeom.autoDeriveVertexTangents = false;
 			subGeom.autoDeriveVertexNormals = false;

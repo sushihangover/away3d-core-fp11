@@ -45,12 +45,12 @@ package away3d.textures
 			return AssetType.TEXTURE;
 		}
 
-		public function get width() : int
+		public virtual function get width() : int
 		{
 			return _width;
 		}
 
-		public function get height() : int
+		public virtual function get height() : int
 		{
 			return _height;
 		}

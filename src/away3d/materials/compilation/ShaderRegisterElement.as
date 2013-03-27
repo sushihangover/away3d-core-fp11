@@ -33,6 +33,11 @@ package away3d.materials.compilation
 				return _regName + (_component? "."+_component : "");
 		}
 
+		public override function ToString() : String
+		{
+			return this.toString();
+		}
+
 		/**
 		 * The register's name.
 		 */

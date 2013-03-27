@@ -72,8 +72,7 @@ package away3d.animators
 			if (updatePosition) {
 				//update straight away to reset position deltas
 				_activeState.update(_absoluteTime);
-				throw new System.NotImplementedException("ASX#1013"); // Mono.CSharp.InternalErrorException: FullNamedExpression `away3d.animators.AnimatorBase._activeState.positionDelta' found in resolved tree
-				// _activeState.positionDelta;
+				_activeState.positionDelta;
 			}
 			
 			_activeVertexState = _activeState as IVertexAnimationState;

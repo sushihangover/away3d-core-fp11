@@ -90,7 +90,9 @@ package away3d.materials.compilation
 		public function removeUsage(register : ShaderRegisterElement) : void
 		{
 			if (register.component) {
-				if (--_usedSingleCount[register.component][register.index] < 0) {
+
+				var d1:Dictionary = _usedSingleCount[register.component];
+				if (--d1[register.index] < 0) {
 					throw new Error("More usages removed than exist!");
 				}
 			}
@@ -138,8 +140,8 @@ package away3d.materials.compilation
 
 				for (var j : int = 0; j < 4; ++j) {
 					comp = COMPONENTS[j];
-					_registerComponents[comp] ||= [];
-					_usedSingleCount[comp] ||= [];
+					if (!_registerComponents[comp]) _registerComponents[comp] = new Dictionary();
+					if (!_usedSingleCount[comp]) _usedSingleCount[comp] = new Dictionary();
 					_registerComponents[comp][i] = new ShaderRegisterElement(regName, i, comp);
 					_usedSingleCount[comp][i] = 0;
 				}

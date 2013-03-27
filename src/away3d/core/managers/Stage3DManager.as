@@ -15,7 +15,7 @@ package away3d.core.managers
 	 */
 	public class Stage3DManager
 	{
-		private static var _instances : Dictionary;
+		private static var _instances : Dictionary = new Dictionary();
 		private static var _stageProxies : Vector.<Stage3DProxy>;
 		private static var _numStageProxies : uint = 0;
 
@@ -42,7 +42,12 @@ package away3d.core.managers
 		 */
 		public static function getInstance(stage : Stage) : Stage3DManager
 		{
-			return (_instances ||= new Dictionary())[stage] ||= new Stage3DManager(stage, new Stage3DManagerSingletonEnforcer());
+			var manager:Stage3DManager = _instances[stage];
+			if (!manager) 
+			{
+				_instances[stage] = manager = new Stage3DManager(stage, new Stage3DManagerSingletonEnforcer());
+			}
+			return manager;
 		}
 
 		/**

@@ -223,7 +223,7 @@ package away3d.loaders.parsers
 			_materialNames = new Vector.<String>();
 			_byteData.position = _offsetSkins;
 			
-			var regExp:RegExp = new RegExp("[^a-zA-Z0-9\\_\x2F.]", "g"); //ASX#1004
+			var regExp:RegExp = new RegExp("[^a-zA-Z0-9\\_\/.]", "g");
 			for (var i : uint = 0; i < _numSkins; ++i) {
 				name = _byteData.readUTFBytes(64);
 				name = name.replace(regExp, "");
@@ -393,8 +393,8 @@ package away3d.loaders.parsers
 
 				subGeom.fromVectors(fvertices, _finalUV, null, null);
 				subGeom.updateIndexData(_indices);
-				var temp0:Vector.<Number> = subGeom.vertexNormalData;
-				var temp1:Vector.<Number> = subGeom.vertexTangentData;
+				subGeom.vertexNormalData;
+				subGeom.vertexTangentData;
 				subGeom.autoDeriveVertexNormals = false;
 				subGeom.autoDeriveVertexTangents = false;
 

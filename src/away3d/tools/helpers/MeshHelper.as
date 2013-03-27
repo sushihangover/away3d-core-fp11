@@ -522,7 +522,7 @@ package away3d.tools.helpers
 				try{
 					tangents = subGeom.vertexTangentData;
 					subGeom.autoDeriveVertexTangents = false;
-				} catch(e:Error) {
+				} catch(e2:Error) {
 					subGeom.autoDeriveVertexTangents = true;
 					tangents = new Vector.<Number>();
 					j = 0;

@@ -796,13 +796,14 @@ package away3d.extrusions
 			if (_profile.length > 1) {
 				
 				if (_thickness != 0) {
-					var aListsides:Array = ["top","bottom", "right", "left", "front", "back"];
 					var renderSide:RenderSide = new RenderSide();
+					renderSide.top    = (_ignoreSides.indexOf("top") == -1);
+					renderSide.bottom = (_ignoreSides.indexOf("bottom") == -1);
+					renderSide.right  = (_ignoreSides.indexOf("right") == -1);
+					renderSide.left   = (_ignoreSides.indexOf("left") == -1);
+					renderSide.front  = (_ignoreSides.indexOf("front") == -1);
+					renderSide.back   = (_ignoreSides.indexOf("back") == -1);
 
-					throw new System.NotImplementedException("ASX#1016");
-//					for(i = 0;i<aListsides.length;++i)
-//						renderSide[aListsides[i]] = (_ignoreSides.indexOf(String(aListsides[i])) == -1);
-					 
 					_varr = new Vector.<Vector3D>();
 					_varr2 = new Vector.<Vector3D>();
 					
@@ -829,7 +830,6 @@ package away3d.extrusions
 								prop1 = Z_AXIS;
 								prop2 = Y_AXIS;
 								prop3 = X_AXIS;
-								break; // ASX#1000
 						}
 						
 						var lines:Array = buildThicknessPoints(_profile, thickness, prop1, prop2);
@@ -943,7 +943,6 @@ package away3d.extrusions
 									val = (_profile[i].y <0)? halft : -halft;
 									tmprofile1.push(new Vector3D(_profile[i].x, _profile[i].y - val, _profile[i].z));
 									tmprofile2.push(new Vector3D(_profile[i].x , _profile[i].y + val, _profile[i].z));
-									break;
 							}
 							
 						}
@@ -1460,7 +1459,6 @@ package away3d.extrusions
 						break;
 					default:
 						prop = "front";
-						break; // ASX#1000
 				}
 				
 				if(_materials[prop] && _MaterialsSubGeometries[i].subGeometry == null){

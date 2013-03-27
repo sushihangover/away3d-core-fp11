@@ -15,7 +15,7 @@ package away3d.core.managers
 
 	public class RTTBufferManager extends EventDispatcher
 	{
-		private static var _instances : Dictionary;
+		private static var _instances : Dictionary = new Dictionary();
 
 		private var _renderToTextureVertexBuffer : VertexBuffer3D;
 		private var _renderToScreenVertexBuffer : VertexBuffer3D;
@@ -44,8 +44,13 @@ package away3d.core.managers
 		public static function getInstance(stage3DProxy : Stage3DProxy) : RTTBufferManager
 		{
 			if (!stage3DProxy) throw new Error("stage3DProxy key cannot be null!");
-			_instances ||= new Dictionary();
-			return _instances[stage3DProxy] ||= new RTTBufferManager(new SingletonEnforcer(), stage3DProxy);
+
+			var manager:RTTBufferManager = _instances[stage3DProxy];
+			if (!manager)
+			{
+				_instances[stage3DProxy] = manager = new RTTBufferManager(new SingletonEnforcer(), stage3DProxy);
+			}
+			return manager;
 		}
 
 

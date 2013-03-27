@@ -39,7 +39,9 @@ package away3d.animators.data
 			get {
 				throw new System.NotImplementedException("Workaround for lack of dynamic objects ASX#1016");
 			}
-			// set {  }
+			set {  
+				throw new System.NotImplementedException("Workaround for lack of dynamic objects ASX#1016");
+			}
 		}
 	}
 
