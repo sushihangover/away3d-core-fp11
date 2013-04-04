@@ -25,17 +25,12 @@ package away3d.materials.compilation
 		/**
 		 * Converts the register or the components AGAL string representation.
 		 */
-		public function toString() : String
+		public override function toString() : String
 		{
 			if (_index >= 0)
 				return _regName + _index + (_component? "."+_component : "");
 			else
 				return _regName + (_component? "."+_component : "");
-		}
-
-		public override function ToString() : String
-		{
-			return this.toString();
 		}
 
 		/**
