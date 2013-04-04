@@ -137,13 +137,18 @@ package away3d.animators.data
 		public function setRegisterIndex(node:AnimationNodeBase, parameterIndex:int, registerIndex:int):void
 		{
 			//9 should be enough for any node. (see color node)
-			var t:Vector.<int> = indexDictionary[node] ||= new Vector.<int>(9, true);
+			var t:Vector.<int> = indexDictionary[node];
+			if (t == null)
+			{
+				indexDictionary[node] = t = new Vector.<int>(9, true);
+			}
 			t[parameterIndex] = registerIndex;
 		}
 		
 		public function getRegisterIndex(node:AnimationNodeBase, parameterIndex:int):int
 		{
-			return indexDictionary[node][parameterIndex];
+			var t:Vector.<int> = indexDictionary[node];
+			return t[parameterIndex];
 		}
 		
 		public function getInitCode():String
@@ -173,7 +178,7 @@ package away3d.animators.data
 		private function getRegisterFromString(code:String):ShaderRegisterElement
 		{
 			var temp:Array = code.split(/(\d+)/);
-			return new ShaderRegisterElement(temp[0], temp[1]);
+			return new ShaderRegisterElement(String(temp[0]), int.Parse(temp[1]));
 		}
 		
 		public var vertexConstantData : Vector.<Number> = new Vector.<Number>();

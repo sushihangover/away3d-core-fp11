@@ -60,9 +60,13 @@ package away3d.animators
 		
 		public function getAnimationState(node:AnimationNodeBase):AnimationStateBase
 		{
-			var className:Class = node.stateClass;
-			
-			return _animationStates[node] ||= new className(this, node);
+			var state:AnimationStateBase = _animationStates[node];
+			if (state == null)
+			{
+				var className:Class = node.stateClass;
+				_animationStates[node] = state = new className(this, node);
+			}
+			return state;
 		}
 		
 		public function getAnimationStateByName(name:String):AnimationStateBase
@@ -291,7 +295,7 @@ package away3d.animators
 		/**
 		 * Enter frame event handler for automatically updating the active state of the animator.
 		 */
-		private function onEnterFrame(event : Event = null) : void
+		public function onEnterFrame(event : Event = null) : void
 		{
 			update(getTimer());
 		}
