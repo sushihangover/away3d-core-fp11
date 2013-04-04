@@ -37,12 +37,22 @@ package away3d.animators.data
 
 		public indexer this (index:String):Object {
 			get {
-				throw new System.NotImplementedException("Workaround for lack of dynamic objects ASX#1016");
+				if (mProperties != null) {
+					return mProperties[index];
+				} else {
+					return null;
+				}
 			}
 			set {  
-				throw new System.NotImplementedException("Workaround for lack of dynamic objects ASX#1016");
+				// create properties dictionary on demand
+				if (mProperties == null) {
+					mProperties = new flash.utils.Dictionary();
+				}
+				mProperties[index] = value;
 			}
 		}
+		
+		var mProperties:flash.utils.Dictionary;
 	}
 
 }
