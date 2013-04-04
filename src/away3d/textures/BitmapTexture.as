@@ -48,9 +48,12 @@
 
 		override protected function uploadContent(texture : TextureBase) : void
 		{
+		#if false
+			MipmapGenerator.generateMipMaps(_bitmapData, texture, _mipMapHolder, true);
+		#else
 			Texture(texture).uploadFromBitmapData(_bitmapData, 0);
-
-			// MipmapGenerator.generateMipMaps(_bitmapData, texture, _mipMapHolder, true);
+			texture.generateMipmaps();
+		#endif
 		}
 
 		private function setMipMap() : void
