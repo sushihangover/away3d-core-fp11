@@ -51,8 +51,7 @@
 		#if false
 			MipmapGenerator.generateMipMaps(_bitmapData, texture, _mipMapHolder, true);
 		#else
-			Texture(texture).uploadFromBitmapData(_bitmapData, 0);
-			texture.generateMipmaps();
+			Texture(texture).uploadFromBitmapData(_bitmapData, 0, true);
 		#endif
 		}
 
