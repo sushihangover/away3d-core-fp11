@@ -290,12 +290,12 @@ package away3d.loaders.misc
 		{
 			var len : uint = _parsers.length;
 
-			throw new System.NotImplementedException("ASX#1029");
 			// go in reverse order to allow application override of default parser added in Away3D proper
-//			for (var i : int = len-1; i >= 0; i--)
-//				if (_parsers[i].supportsType(_fileExtension)) return new _parsers[i]();
-//			
-//			return null;
+			for (var i : int = len-1; i >= 0; i--)
+				if (invokeStaticMethod(_parsers[i], "supportsType", [_fileExtension])) 
+					return new _parsers[i]();
+			
+			return null;
 		}
 		
 		/**
@@ -307,15 +307,12 @@ package away3d.loaders.misc
 		private function getParserFromData(data : *) : ParserBase
 		{
 			var len : uint = _parsers.length;
-
-			throw new System.NotImplementedException("ASX#1029");
-			
 			// go in reverse order to allow application override of default parser added in Away3D proper
-//			for (var i : int = len-1; i >= 0; i--)
-//				if (_parsers[i].supportsData(data))
-//					return new _parsers[i]();
-//			
-//			return null;
+			for (var i : int = len-1; i >= 0; i--)
+				if (invokeStaticMethod(_parsers[i], "supportsData", [data]))
+					return new _parsers[i]();
+			
+			return null;
 		}
 		
 		/**

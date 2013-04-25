@@ -14,6 +14,7 @@ package away3d.loaders.parsers
 	import away3d.core.base.SkinnedSubGeometry;
 	import away3d.entities.Mesh;
 	import away3d.loaders.misc.ResourceDependency;
+	import away3d.loaders.parsers.utils.ParserUtil;
 	import away3d.materials.ColorMaterial;
 	import away3d.materials.MaterialBase;
 	import away3d.materials.SinglePassMaterialBase;
@@ -113,7 +114,8 @@ package away3d.loaders.parsers
 		 */
 		public static function supportsData(data : *) : Boolean
 		{
-			if (String(data).indexOf("COLLADA") != -1 || String(data).indexOf("collada") != -1)
+			var strData:String = ParserUtil.toString(data);
+			if (strData.indexOf("COLLADA") != -1 || strData.indexOf("collada") != -1)
 				return true;
 
 			return false;

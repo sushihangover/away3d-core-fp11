@@ -127,7 +127,7 @@ package away3d.core.partition
 			return inFrustum;
 		}
 
-		protected function isInFrustumImpl(camera : Camera3D) : Boolean
+		protected virtual function isInFrustumImpl(camera : Camera3D) : Boolean
 		{
 			return true;
 		}

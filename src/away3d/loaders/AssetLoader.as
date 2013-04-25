@@ -213,8 +213,7 @@ package away3d.loaders
 				_context = context;
 				_namespace = ns;
 
-				throw new System.NotSupportedException("ASX#1035");
-				// _baseDependency = new ResourceDependency(id, null, data, null);
+				_baseDependency = new ResourceDependency(id, null, System.Object(data), null);
 				retrieveDependency(_baseDependency, parser);
 				
 				return _token;

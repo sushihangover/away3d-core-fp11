@@ -18,7 +18,7 @@ package away3d.loaders.parsers.utils
 		{
 			var ba : ByteArray;
 			
-			length ||= uint.MAX_VALUE;
+			if (length==0) length = uint.MAX_VALUE;
 			
 			if (data is String)
 				return String(data).substr(0, length);

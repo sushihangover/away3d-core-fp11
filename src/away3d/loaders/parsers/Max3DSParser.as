@@ -222,7 +222,8 @@ package away3d.loaders.parsers
 				// Finalize any remaining objects before ending.
 				for (name in _unfinalized_objects) {
 					var obj : ObjectContainer3D;
-					obj = constructObject(_unfinalized_objects[name]);
+					var ovo : ObjectVO = _unfinalized_objects[name];
+					obj = constructObject(ovo);
 					if (obj) {
 						finalizeAsset(obj, name);
 					}
