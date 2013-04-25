@@ -135,13 +135,8 @@ package away3d.textures
 
 		override protected function uploadContent(texture : TextureBase) : void
 		{
-#if false
 			for (var i : int = 0; i < 6; ++i)
 				MipmapGenerator.generateMipMaps(_bitmapDatas[i], texture, null, _bitmapDatas[i].transparent, i);
-#else
-			for (var i : int = 0; i < 6; ++i)
-				CubeTexture(texture).uploadFromBitmapData(_bitmapDatas[i], i, 0, true);
-#endif
 		}
 	}
 }

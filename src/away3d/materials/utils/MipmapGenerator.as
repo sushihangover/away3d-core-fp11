@@ -23,6 +23,13 @@ package away3d.materials.utils
 		 */
 		public static function generateMipMaps(source : BitmapData, target : TextureBase, mipmap : BitmapData = null, alpha : Boolean = false, side : int = -1) : void
 		{
+#if true
+			// use built in mipmap generation
+			if (target is Texture)
+				Texture(target).uploadFromBitmapData(source, 0, true);
+			else
+				CubeTexture(target).uploadFromBitmapData(source, uint(side), 0, true);
+#else
 			var w : uint = source.width,
 				h : uint = source.height;
 			var i : uint;
@@ -54,6 +61,7 @@ package away3d.materials.utils
 
 			if (!regen)
 				mipmap.dispose();
+#endif
 		}
 	}
 }
