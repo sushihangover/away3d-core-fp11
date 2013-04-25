@@ -28,9 +28,7 @@ package away3d.materials.methods
 		public function FresnelSpecularMethod(basedOnSurface : Boolean = true, baseSpecularMethod : BasicSpecularMethod = null)
 		{
             // may want to offer diff speculars
-			throw new System.NotImplementedException("ASX#1017");
-			super(null, baseSpecularMethod);
-			//super(modulateSpecular, baseSpecularMethod);
+			super(modulateSpecular, baseSpecularMethod);
             _incidentLight = !basedOnSurface;
 		}
 

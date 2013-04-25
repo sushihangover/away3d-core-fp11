@@ -22,7 +22,7 @@ package away3d.materials.methods {
 	 */
 	public class ShadingMethodBase extends EventDispatcher
 	{
-		protected var _sharedRegisters : ShaderRegisterData;
+		public var _sharedRegisters : ShaderRegisterData;
 		protected var _passes : Vector.<MaterialPassBase>;
 
 		/**
