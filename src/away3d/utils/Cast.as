@@ -270,10 +270,11 @@ package away3d.utils
                 data = tryClass(data);
 
             if (data is Class) {
-                try {
-                    data = new data;
+				var type:Class = Class(data);
+				try {
+                    data = new type;
                 } catch (bitmapError:ArgumentError) {
-                    data = new data(0,0);
+                    data = new type(0,0);
                 }
             }
 
@@ -306,10 +307,11 @@ package away3d.utils
                 data = tryClass(data);
 
             if (data is Class) {
-                try {
-                    data = new data;
+				var type:Class = Class(data);
+				try {
+					data = new type;
                 } catch (materialError:ArgumentError) {
-                    data = new data(0,0);
+                    data = new type(0,0);
                 }
             }
 
