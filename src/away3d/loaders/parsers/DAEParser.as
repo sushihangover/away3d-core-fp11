@@ -490,7 +490,7 @@ package away3d.loaders.parsers
 					//var state:SkeletonAnimationState = SkeletonAnimationState(mesh.animationState);
 					//animator = new SmoothSkeletonAnimator(state);
 					//SmoothSkeletonAnimator(animator).addSequence(SkeletonAnimationSequence(sequence));
-					clip.name = "node_" + _rootNodes.length;
+					clip.name = "node_" + _rootNodes.length.toString();
 					animationSet.addAnimation(clip);
 
 					//_animators.push(animator);
@@ -2029,7 +2029,7 @@ class DAENode extends DAEElement
 								m.transpose();
 
 							} else {
-								trace("unhandled matrix " + transform.sid + " " + odata);
+								trace("unhandled matrix " + transform.sid + " " + odata.toString());
 							}
 							break;
 
@@ -2075,7 +2075,7 @@ class DAENode extends DAEElement
 								}
 
 							} else {
-								trace("unhandled scale: " + odata.length);
+								trace("unhandled scale: " + odata.length.toString());
 							}
 							break;
 

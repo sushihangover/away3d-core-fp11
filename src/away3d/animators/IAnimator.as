@@ -28,7 +28,7 @@ package away3d.animators
 		 * @param vertexConstantOffset The first available vertex register to write data to if running on the gpu.
 		 * @param vertexStreamOffset The first available vertex stream to write vertex data to if running on the gpu.
 		 */
-		function setRenderState(stage3DProxy : Stage3DProxy, renderable : IRenderable, vertexConstantOffset : int, vertexStreamOffset : int, camera:Camera3D) : void
+		function setRenderState(stage3DProxy : Stage3DProxy, renderable : IRenderable, vertexConstantOffset : int, vertexStreamOffset : int, camera:Camera3D) : void;
 		
         /**
          * Verifies if the animation will be used on cpu. Needs to be true for all passes for a material to be able to use it on gpu.
@@ -41,14 +41,14 @@ package away3d.animators
 		 *
 		 * @private
 		 */
-		function addOwner(mesh : Mesh) : void
+		function addOwner(mesh : Mesh) : void;
 		
 		/**
 		 * Used by the mesh object from which the animator is removed, unregisters the owner for internal use.
 		 *
 		 * @private
 		 */
-		function removeOwner(mesh : Mesh) : void
+		function removeOwner(mesh : Mesh) : void;
 		
 		function getAnimationState(node:AnimationNodeBase):AnimationStateBase;
 		

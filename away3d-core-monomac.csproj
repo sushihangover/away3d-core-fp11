@@ -3,19 +3,21 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{91FC9AA4-D01B-4AF1-83C8-ED31CB51B84E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>away3dcoremonomac</RootNamespace>
     <AssemblyName>away3d-core-monomac</AssemblyName>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;OPENGL;PLATFORM_MONOMAC;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -28,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\com\adobe\utils\AGALMiniAssembler.as" />
@@ -488,13 +487,19 @@
     <None Include="src\away3d\away3d-license.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\playscript-mono\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-net_4_0.csproj">
+    <ProjectReference Include="..\playscript\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-net_4_5.csproj">
       <Project>{0BACBE20-34DD-4E24-8B91-87970E8A23B9}</Project>
-      <Name>PlayScript.Dynamic_aot-net_4_0</Name>
+      <Name>PlayScript.Dynamic_aot-net_4_5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\playscript-mono\mcs\class\pscorlib_aot\pscorlib_aot-net_4_0_monomac.csproj">
+    <ProjectReference Include="..\playscript\mcs\class\pscorlib_aot\pscorlib_aot-net_4_5_monomac.csproj">
       <Project>{EDBAC91B-2817-479E-8DDF-B24ADDA563A6}</Project>
-      <Name>pscorlib_aot-net_4_0_monomac</Name>
+      <Name>pscorlib_aot-net_4_5_monomac</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="MonoMac">
+      <HintPath>..\monomac\src\MonoMac.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

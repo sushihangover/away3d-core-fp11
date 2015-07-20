@@ -1,7 +1,7 @@
 ﻿package away3d.core.base.data
 {
 	import away3d.core.math.Plane3D;
-	import away3d.core.math.Plane3D;
+	//import away3d.core.math.Plane3D;
 
 	import flash.geom.Point;
 	import flash.geom.Vector3D;

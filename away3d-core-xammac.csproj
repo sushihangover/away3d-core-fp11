@@ -2,87 +2,45 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FF1734CB-3667-4A23-BC9F-795E331A44B9}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{91FC9AA4-D01B-4AF1-83C8-ED31CB51B84E}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>monoaway3dcore</RootNamespace>
-    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>monoaway3dcore</AssemblyName>
+    <RootNamespace>away3dcoremonomac</RootNamespace>
+    <AssemblyName>away3d-core-monomac</AssemblyName>
+    <UseMSBuildEngine>False</UseMSBuildEngine>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchLink>None</MtouchLink>
-    <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchLink>None</MtouchLink>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <BuildIpa>true</BuildIpa>
-    <ConsolePause>false</ConsolePause>
-    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\AppStore</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="PlayScript.Dynamic_aot">
+      <HintPath>..\playscriptredux\mcs\class\lib\net_4_5\PlayScript.Dynamic_aot.dll</HintPath>
+    </Reference>
+    <Reference Include="pscorlib_aot">
+      <HintPath>..\playscriptredux\mcs\class\lib\net_4_5\pscorlib_aot.dll</HintPath>
+    </Reference>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\com\adobe\utils\AGALMiniAssembler.as" />
     <Compile Include="src\away3d\Away3D.as" />
     <Compile Include="src\away3d\arcane.as" />
     <Compile Include="src\away3d\animators\AnimationSetBase.as" />
@@ -102,6 +60,7 @@
     <Compile Include="src\away3d\animators\data\AnimationSubGeometry.as" />
     <Compile Include="src\away3d\animators\data\JointPose.as" />
     <Compile Include="src\away3d\animators\data\ParticleAnimationData.as" />
+    <Compile Include="src\away3d\animators\data\ParticleProperties.asx" />
     <Compile Include="src\away3d\animators\data\ParticlePropertiesMode.as" />
     <Compile Include="src\away3d\animators\data\Skeleton.as" />
     <Compile Include="src\away3d\animators\data\SkeletonJoint.as" />
@@ -206,6 +165,7 @@
     <Compile Include="src\away3d\core\base\data\Face.as" />
     <Compile Include="src\away3d\core\base\data\ParticleData.as" />
     <Compile Include="src\away3d\core\base\data\UV.as" />
+    <Compile Include="src\away3d\core\base\data\Vertex.asx" />
     <Compile Include="src\away3d\core\data\EntityListItem.as" />
     <Compile Include="src\away3d\core\data\EntityListItemPool.as" />
     <Compile Include="src\away3d\core\data\RenderableListItem.as" />
@@ -272,6 +232,7 @@
     <Compile Include="src\away3d\debug\WireframeAxesGrid.as" />
     <Compile Include="src\away3d\debug\data\TridentLines.as" />
     <Compile Include="src\away3d\entities\Entity.as" />
+    <Compile Include="src\away3d\entities\Mesh.asx" />
     <Compile Include="src\away3d\entities\SegmentSet.as" />
     <Compile Include="src\away3d\entities\Sprite3D.as" />
     <Compile Include="src\away3d\entities\TextureProjector.as" />
@@ -298,6 +259,7 @@
     <Compile Include="src\away3d\extrusions\DelaunayMesh.as" />
     <Compile Include="src\away3d\extrusions\Elevation.as" />
     <Compile Include="src\away3d\extrusions\LatheExtrude.as" />
+    <Compile Include="src\away3d\extrusions\LinearExtrude.asx" />
     <Compile Include="src\away3d\extrusions\PathDuplicator.as" />
     <Compile Include="src\away3d\extrusions\PathExtrude.as" />
     <Compile Include="src\away3d\extrusions\SkinExtrude.as" />
@@ -449,6 +411,7 @@
     <Compile Include="src\away3d\materials\utils\DefaultMaterialManager.as" />
     <Compile Include="src\away3d\materials\utils\IVideoPlayer.as" />
     <Compile Include="src\away3d\materials\utils\MipmapGenerator.as" />
+    <Compile Include="src\away3d\materials\utils\MultipleMaterials.asx" />
     <Compile Include="src\away3d\materials\utils\SimpleVideoPlayer.as" />
     <Compile Include="src\away3d\materials\utils\WireframeMapGenerator.as" />
     <Compile Include="src\away3d\paths\CubicPath.as" />
@@ -476,8 +439,6 @@
     <Compile Include="src\away3d\primitives\WireframePrimitiveBase.as" />
     <Compile Include="src\away3d\primitives\WireframeSphere.as" />
     <Compile Include="src\away3d\primitives\WireframeTetrahedron.as" />
-    <Compile Include="src\away3d\primitives\data\NURBSVertex.as" />
-    <Compile Include="src\away3d\primitives\data\Segment.as" />
     <Compile Include="src\away3d\stereo\StereoCamera3D.as" />
     <Compile Include="src\away3d\stereo\StereoRenderer.as" />
     <Compile Include="src\away3d\stereo\StereoView3D.as" />
@@ -501,6 +462,7 @@
     <Compile Include="src\away3d\textures\TextureProxyBase.as" />
     <Compile Include="src\away3d\textures\VideoTexture.as" />
     <Compile Include="src\away3d\textures\WebcamTexture.as" />
+    <Compile Include="src\away3d\tools\commands\Align.asx" />
     <Compile Include="src\away3d\tools\commands\Explode.as" />
     <Compile Include="src\away3d\tools\commands\Merge.as" />
     <Compile Include="src\away3d\tools\commands\Mirror.as" />
@@ -525,25 +487,11 @@
     <Compile Include="src\away3d\tools\utils\TextureUtils.as" />
     <Compile Include="src\away3d\utils\Cast.as" />
     <Compile Include="src\away3d\utils\GeometryUtil.as" />
-    <Compile Include="src\away3d\animators\data\ParticleProperties.asx" />
-    <Compile Include="src\away3d\extrusions\LinearExtrude.asx" />
-    <Compile Include="src\away3d\materials\utils\MultipleMaterials.asx" />
-    <Compile Include="src\away3d\core\base\data\Vertex.asx" />
-    <Compile Include="src\away3d\entities\Mesh.asx" />
-    <Compile Include="src\away3d\tools\commands\Align.asx" />
-    <Compile Include="src\com\adobe\utils\AGALMiniAssembler.as" />
+    <Compile Include="src\away3d\primitives\data\NURBSVertex.as" />
+    <Compile Include="src\away3d\primitives\data\Segment.as" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="src\away3d\away3d-license.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\playscript\mcs\class\pscorlib_aot\pscorlib_aot-monotouch.csproj">
-      <Project>{876BFFD1-CEFA-44DD-9243-A50958EF65DD}</Project>
-      <Name>pscorlib_aot-monotouch</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\playscript\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-monotouch.csproj">
-      <Project>{CC73D545-B7C7-4FB4-996A-C76E8B0D5B81}</Project>
-      <Name>PlayScript.Dynamic_aot-monotouch</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

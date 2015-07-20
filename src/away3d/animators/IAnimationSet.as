@@ -99,7 +99,7 @@ package away3d.animators
 		 *
 		 * @private
 		 */
-		function activate(stage3DProxy : Stage3DProxy, pass : MaterialPassBase) : void
+		function activate(stage3DProxy : Stage3DProxy, pass : MaterialPassBase) : void;
 
 		/**
 		 * Clears the GPU render state that has been set by the current animation.
@@ -109,6 +109,6 @@ package away3d.animators
 		 *
 		 * @private
 		 */
-		function deactivate(stage3DProxy : Stage3DProxy, pass : MaterialPassBase) : void
+		function deactivate(stage3DProxy : Stage3DProxy, pass : MaterialPassBase) : void;
 	}
 }

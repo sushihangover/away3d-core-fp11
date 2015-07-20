@@ -17,7 +17,7 @@ package away3d.materials.passes {
 	import flash.display3D.Context3DBlendFactor;
 	import flash.display3D.Context3DCompareMode;
 	import flash.display3D.Context3DProgramType;
-	import flash.display3D.Context3DTextureFormat;
+	//import flash.display3D.Context3DTextureFormat;
 	import flash.display3D.Context3DTriangleFace;
 	import flash.display3D.Program3D;
 	import flash.display3D.textures.TextureBase;

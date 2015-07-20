@@ -5,6 +5,6 @@ package away3d.animators.transitions
 	
 	public interface IAnimationTransition
 	{
-		function getAnimationNode(animator:IAnimator, startNode:AnimationNodeBase, endNode:AnimationNodeBase, startTime:int):AnimationNodeBase
+		function getAnimationNode(animator:IAnimator, startNode:AnimationNodeBase, endNode:AnimationNodeBase, startTime:int):AnimationNodeBase;
 	}
 }

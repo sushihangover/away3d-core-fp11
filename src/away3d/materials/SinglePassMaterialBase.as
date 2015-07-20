@@ -357,7 +357,7 @@
 				}
 
 				addPass(_screenPass);
-				_screenPass._passesDirty = false
+				_screenPass._passesDirty = false;
 			}
 		}
 

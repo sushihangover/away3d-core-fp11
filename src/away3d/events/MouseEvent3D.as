@@ -2,7 +2,7 @@ package away3d.events
 {
 
 	import away3d.containers.ObjectContainer3D;
-	import away3d.containers.ObjectContainer3D;
+	//import away3d.containers.ObjectContainer3D;
 	import away3d.containers.View3D;
 	import away3d.core.base.IRenderable;
 	import away3d.core.base.Object3D;
