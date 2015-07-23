@@ -1047,7 +1047,10 @@ package away3d.loaders.parsers
 			
 			// Read material numerical properties
 			// (1=color, 2=bitmap url, 10=alpha, 11=alpha_blending, 12=alpha_threshold, 13=repeat)
-			props = parseProperties({1:INT32, 2:BADDR, 10:_propsNrType, 11:BOOL, 12:_propsNrType, 13:BOOL});
+//			throw new System.NotImplementedException(); // ASX#1005
+			//props = parseProperties({ 1:AWD_FIELD_INT32, 2:AWD_FIELD_BADDR, 
+			//	10:AWD_FIELD_FLOAT32, 11:AWD_FIELD_BOOL, 
+			//	12:AWD_FIELD_FLOAT32, 13:AWD_FIELD_BOOL });
 			
 			methods_parsed = 0;
 			while (methods_parsed < num_methods) {
